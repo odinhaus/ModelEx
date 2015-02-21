@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="App_Config"
+    targetNamespace="modelex"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/App_Config.xsd"
+    xmlns:mstns="http://tempuri.org/App_Config.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:modelex="modelex"
+>
+  <xs:complexType name="Node" abstract="true">
+    <xs:sequence>
+      <xs:element name="Entity" type="modelex:Entity"/>
+    </xs:sequence>
+    <xs:attribute name="name" use="required" type="xs:ID"/>
+    <xs:attribute name="displayProperty" use="required" type="xs:string"/>
+    <xs:attribute name="displayFormat" use="optional" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="DataSource" abstract="true">
+  </xs:complexType>
+
+  <xs:complexType name="DBDataSource">
+    <xs:complexContent>
+      <xs:extension base="modelex:DataSource">
+        <xs:attribute name="provider" use="required" type="xs:string"/>
+        <xs:attribute name="connectionString" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DBEntityDataSource">
+    <xs:complexContent>
+      <xs:extension base="modelex:DataSource">
+        <xs:sequence>
+          <xs:element name="Read" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Create" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Update" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Delete" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="provider" use="optional" type="xs:string"/>
+        <xs:attribute name="connectionString" use="optional" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AssemblyEntityDataSource">
+    <xs:complexContent>
+      <xs:extension base="modelex:DataSource">
+        <xs:sequence>
+          <xs:element name="Read" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Read"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Create" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Create"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Update" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Update"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Delete" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Delete"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="assemblyPath" use="required" type="xs:string"/>
+        <xs:attribute name="typeName" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CodeEntityDataSource">
+    <xs:complexContent>
+      <xs:extension base="modelex:DataSource">
+        <xs:sequence>
+          <xs:element name="Code" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Read" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Read"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Create" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Create"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Update" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Update"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Delete" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:attribute name="methodName" use="optional" type="xs:string" default="Delete"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="typeName" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ScalarProperty">
+    <xs:complexContent>
+      <xs:extension base="modelex:Property">
+        <xs:attribute name="value" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataProperty">
+    <xs:complexContent>
+      <xs:extension base="modelex:Property">
+        <xs:attribute name="source" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EvaluatedProperty">
+    <xs:complexContent>
+      <xs:extension base="modelex:Property">
+        <xs:attribute name="expression" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="Property" abstract="true">
+    <xs:attribute name="name" use="required" type="xs:string"/>
+    <xs:attribute name="type" use="required" type="modelex:CS_Type"/>
+  </xs:complexType>
+
+  <xs:complexType name="Entity">
+    <xs:sequence>
+      <xs:element name="Properties"  minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Property" type="modelex:Property" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DataSource" type="modelex:DataSource" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Code" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Behaviors" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Behavior" type="modelex:Behavior" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="View" abstract="true">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StandardViewColumn" abstract="true">
+    <xs:attribute name="name" use="required" type="xs:string"/>
+    <xs:attribute name="displayFormat" use="optional" type="xs:string"/>
+    <xs:attribute name="transformFunction" use="optional" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="EntityMappedViewColumn">
+    <xs:complexContent>
+      <xs:extension base="modelex:StandardViewColumn">
+        <xs:attribute name="entityProperty" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ScalarValueViewColumn">
+    <xs:complexContent>
+      <xs:extension base="modelex:StandardViewColumn">
+        <xs:attribute name="scalarValue" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StandardView">
+    <xs:complexContent>
+      <xs:extension base="modelex:View">
+        <xs:sequence>
+          <xs:element name="Columns">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Column" minOccurs="1" maxOccurs="unbounded" type="modelex:StandardViewColumn"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WpfView">
+    <xs:complexContent>
+      <xs:extension base="modelex:View">
+        <xs:all>
+          <xs:element name="ViewXAML" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Code" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="References" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Reference" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:attribute name="codeBase" use="required" type="xs:string"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="StyleXAML" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WinformView">
+    <xs:complexContent>
+      <xs:extension base="modelex:View">
+        <xs:all>
+          <xs:element name="References" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Reference" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:attribute name="codeBase" use="required" type="xs:string"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="ViewStyleXAML" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+        <xs:attribute name="codeBase" use="required" type="xs:string"/>
+        <xs:attribute name="typeName" use="required" type="xs:string"/>
+        <xs:attribute name="initMethod" use="optional" type="xs:string" default="Initialize"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="Folder">
+    <xs:complexContent>
+      <xs:extension base="modelex:Node">
+        <xs:sequence>
+          <xs:element name="BodyView" minOccurs="1" maxOccurs="1" type="modelex:View"/>
+          <xs:element name="Files" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="File" type="modelex:File" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Folders" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Folder" type="modelex:Folder" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="File">
+    <xs:complexContent>
+      <xs:extension base="modelex:Node">
+        <xs:sequence>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:attribute name="Action">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="OnOpen"/>
+        <xs:enumeration value="OnCreate"/>
+        <xs:enumeration value="OnRead"/>
+        <xs:enumeration value="OnUpdate"/>
+        <xs:enumeration value="OnDelete"/>
+        <xs:enumeration value="OnClose"/>
+        <xs:enumeration value="OnSelect"/>
+        <xs:enumeration value="OnDeselect"/>
+        <xs:enumeration value="OnDragStart"/>
+        <xs:enumeration value="OnDragComplete"/>
+        <xs:enumeration value="OnPrint"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+  <xs:complexType name="Behavior" abstract="true">
+    <xs:attribute ref="modelex:Action" use="required"/>
+    <xs:attribute name="priority" use="optional" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="DefaultBehavior">
+    <xs:complexContent>
+      <xs:extension base="modelex:Behavior">
+        <xs:attribute name="handler" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CodeBehavior">
+    <xs:complexContent>
+      <xs:extension base="modelex:Behavior">
+        <xs:sequence>
+          <xs:element name="Code" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="inputParameterName" use="optional" type="xs:string" default="e"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType  name="CS_Type">
+    <xs:union memberTypes="modelex:CS_Types modelex:CS_AnyType"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="CS_Types">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="System.String"/>
+      <xs:enumeration value="System.Int32"/>
+      <xs:enumeration value="System.Int64"/>
+      <xs:enumeration value="System.Single"/>
+      <xs:enumeration value="System.Double"/>
+      <xs:enumeration value="System.DateTime"/>
+      <xs:enumeration value="System.Boolean"/>
+      <xs:enumeration value="System.Byte"/>
+      <xs:enumeration value="System.SByte"/>
+      <xs:enumeration value="System.Char"/>
+      <xs:enumeration value="System.UInt16"/>
+      <xs:enumeration value="System.UInt32"/>
+      <xs:enumeration value="System.UInt63"/>
+      <xs:enumeration value="System.Int16"/>
+      <xs:enumeration value="System.Decimal"/>
+      <xs:enumeration value="System.Byte[]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CS_AnyType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:element name="ModelEx">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Configuration" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DataSource" type="modelex:DataSource"/>
+              <xs:element name="Local">
+                <xs:complexType>
+                  <xs:attribute name="tempLocation" use="optional" type="xs:string"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Folders" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Folder" type="modelex:Folder" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Files" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="File" type="modelex:File" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CalculationModels" minOccurs="1" maxOccurs="1">
+          
+        </xs:element>
+        <xs:element name="ReportModels" minOccurs="1" maxOccurs="1">
+          
+        </xs:element>
+      </xs:all>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

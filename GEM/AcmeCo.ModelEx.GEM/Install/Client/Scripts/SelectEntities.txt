@@ -1,0 +1,6 @@
+﻿SELECT DISTINCT E.* 
+FROM Entity E
+LEFT JOIN EntityTag ET on ET.EntityId = E.Id
+LEFT JOIN Tag T on T.Id = ET.TagId
+WHERE (@Type is null or E.Type = @Type)
+and (@TagsIn is null or T.Name in (@Tags));

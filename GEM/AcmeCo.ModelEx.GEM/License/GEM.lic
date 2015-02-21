@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+    ******* WARNING *******
+    Changing any of the values shown below will result in rendering this license file invalid.
+-->
+<License>
+  <Key>GEM_000001</Key>
+  <ValidationCode>3F3403F1-405F3206-FB03F940-5F3207F8</ValidationCode>
+  <IssuedDate>2013-07-31 09:37:57.113554</IssuedDate>
+  <ExpirationDate>9999-12-31 23:59:59.9999999</ExpirationDate>
+  <Product>ModelEx</Product>
+  <Apps>    
+	  <App Name="GEM">
+		   <Version>1.0</Version> 
+		   <IsLocal>true</IsLocal>
+	  </App>
+  </Apps>
+</License>

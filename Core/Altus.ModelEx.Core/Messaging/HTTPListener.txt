@@ -1,0 +1,16 @@
+﻿Microsoft Windows [Version 6.1.7600]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32>netsh http add urlacl url=http://+:88/moby user=users
+
+URL reservation successfully added
+
+
+C:\Windows\system32>netsh http add urlacl url=http://+:87/moby user=users
+
+URL reservation successfully added
+
+
+C:\Windows\system32>netsh http add urlacl url=http://+:8080/moby user=users
+
+URL reservation successfully added

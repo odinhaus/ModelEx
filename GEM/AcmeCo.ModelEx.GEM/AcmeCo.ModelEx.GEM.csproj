@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1DB0D20-F8A1-4A54-A974-EDE49A9901EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AcmeCo.ModelEx.GEM</RootNamespace>
+    <AssemblyName>GEM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SpreadsheetGear2012.Core">
+      <HintPath>Binaries\SpreadsheetGear2012.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Selectors\ConfigViewContentTemplateSelector.cs" />
+    <Compile Include="Views\Config.xaml.cs">
+      <DependentUpon>Config.xaml</DependentUpon>
+    </Compile>
+    <Resource Include="Install\Client\AssemblyInfo.cs" />
+    <Resource Include="Install\Client\Entity.cs" />
+    <Resource Include="Install\Client\DataFileEntity.cs" />
+    <Resource Include="Install\Client\CalculationFileEntity.cs" />
+    <Resource Include="Install\Client\ReportFileEntity.cs" />
+    <Compile Include="Install\Server\PlatformServerInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\Client\PlatformClientInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\Server\AppServerInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\Client\AppClientInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\ConfigValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\Installer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\GEM_Config.cs">
+      <DependentUpon>GEM_Config.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Selectors\EmbeddedDataTemplateSelector.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="ViewModels\Entity.cs" />
+    <Compile Include="ViewModels\EntityBehavior.cs" />
+    <Compile Include="ViewModels\Explorer.cs" />
+    <Compile Include="ViewModels\ReportFileEntity.cs" />
+    <Compile Include="ViewModels\FileEntity.cs" />
+    <Compile Include="ViewModels\ReportEntity.cs" />
+    <Compile Include="Views\Entity_List.xaml.cs">
+      <DependentUpon>Entity_List.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entity_Small.xaml.cs">
+      <DependentUpon>Entity_Small.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entity_Large.xaml.cs">
+      <DependentUpon>Entity_Large.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Explorer_body.xaml.cs">
+      <DependentUpon>Explorer_body.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Explorer_main.xaml.cs">
+      <DependentUpon>Explorer_main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Explorer_tool.xaml.cs">
+      <DependentUpon>Explorer_tool.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GEM.manifest" />
+    <None Include="License\GEM.lic" />
+    <None Include="Schema\GEM_Config.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default_Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Views\DataTemplates\Main\Entity_List.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Views\DataTemplates\Main\Explorer_body.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Views\DataTemplates\Main\Entity_Large.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Views\DataTemplates\Main\Entity_Small.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="Views\Config.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Entity_List.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Entity_Small.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Entity_Large.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Explorer_body.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Explorer_main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Explorer_tool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Altus.ModelEx.Core\Altus.Core.csproj">
+      <Project>{3f642a5b-da70-4289-a453-df0e9c241d99}</Project>
+      <Name>Altus.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UI\AcmeCo.ModelEx.UI\AcmeCo.ModelEx.UI.csproj">
+      <Project>{bea14fdd-9cb9-4732-98d1-bc874d72a6da}</Project>
+      <Name>AcmeCo.ModelEx.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Install\Client\DBSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Install\Client\Scripts\SelectEntities.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Install\Client\Scripts\SelectEntitiesExtended.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Images\document.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(ProjectDir)License\GEM.lic $(SolutionDir)UI\WoodMac.ModelEx.UI\$(OutDir)GEM.lic /y /r
+xcopy $(ProjectDir)GEM.manifest $(SolutionDir)UI\WoodMac.ModelEx.UI\$(OutDir)Apps\GEM\1.0\GEM.manifest /y /r
+xcopy $(TargetPath) $(SolutionDir)UI\WoodMac.ModelEx.UI\$(OutDir)Apps\GEM\1.0\$(TargetFileName) /y /r</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

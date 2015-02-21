@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Key>1234-5678-9012-3456-abcd</Key>
+  <ValidationCode>xyzabc</ValidationCode>
+  <IssuedDate>2012-01-01 00:00:00</IssuedDate>
+  <ExpirationDate>9999-12-31 23:59:59.9999999</ExpirationDate>
+  <Platform>oilfield.omron.com</Platform>
+  <Organization>Patterson</Organization>
+  <OrgUnit>333</OrgUnit>
+  <Product>canary</Product>
+  <Number>1</Number>
+  <Components>
+    <Historian>
+      <Objects>
+        <Controls>
+          <SizeOnDisk>200</SizeOnDisk>
+          <Duration>180</Duration>
+        </Controls>
+      </Objects>
+    </Historian>
+  </Components>
+</License>

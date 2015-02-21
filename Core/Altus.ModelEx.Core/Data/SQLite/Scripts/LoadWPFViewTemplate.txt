@@ -1,0 +1,16 @@
+﻿SELECT
+   V.Id,
+   V.Name,
+   V.IconPath,
+   T.XAML,
+   T.Size,
+   MT.XAML as MasterXAML
+FROM View V
+JOIN WindowView WV on V.Id = WV.ViewId
+JOIN Window W on W.Id = WV.WindowId
+JOIN WPFTemplateView VT on VT.ViewId = V.Id
+JOIN WPFTemplate T on T.Id = VT.WPFTemplateId
+LEFT JOIN WPFTemplate MT on MT.Id = T.MasterTemplateId
+WHERE T.Size = @Size
+and V.Name LIKE @ViewName
+and W.Name LIKE @Window;

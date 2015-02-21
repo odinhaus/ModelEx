@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ModelEx xmlns="modelex" name="AcmeCo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <Configuration>
+    <DataSource
+                xsi:type="DBDataSource"
+                provider="System.Data.SQLite.SQLiteConnection, System.Data.SQLite"
+                connectionString="Data Source=Apps\UpstreamLNG\1.0\Data\GEM.db3;Database=GEM;"/>
+    <Local tempLocation="Temp"/>
+  </Configuration>
+  <Folders>
+    <Folder
+          xsi:type="Folder"
+          name="BusinessAreaFolder"
+          displayProperty="Name">
+      <Entity>
+        <Properties>
+          <Property xsi:type="DataPropertyScalar" name="Id" source="ROWID" type="System.Int64"/>
+          <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+          <Property xsi:type="EvaluatedProperty" name="Modified" expression="DateTime.Now" type="System.DateTime"/>
+          <Property xsi:type="ScalarProperty" name="IsSynchronized" value="true" type="System.Boolean"/>
+        </Properties>
+        <DataSource xsi:type="DBEntityDataSource">
+          <Read>
+            <![CDATA[SELECT ROWID, Name FROM BusinessArea WHERE Name="Upstream/LNG"]]>
+          </Read>
+          <Create/>
+          <Update/>
+          <Delete/>
+        </DataSource>
+        <Behaviors>
+          <Behavior xsi:type="DefaultBehavior" a:Action="OnOpen" xmlns:a="modelex"/>
+          <Behavior xsi:type="CodeBehavior" a:Action="OnPropertiesShow" inputParameterName="e" xmlns:a="modelex">
+            <Code>
+              System.Windows.MessageBox.Show("Custom Code Behavior");
+            </Code>
+          </Behavior>
+        </Behaviors>
+      </Entity>
+      <BodyView xsi:type="StandardView">
+        <Columns>
+          <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+          <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+          <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+          <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+        </Columns>
+      </BodyView>
+      <Folders>
+        <Folder name="RegimeFolder" displayProperty="Name">
+          <Entity>
+            <Properties>
+              <Property xsi:type="DataPropertyScalar" name="Id" source="ROWID" type="System.Int64"/>
+              <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+              <Property xsi:type="EvaluatedProperty" name="Modified" expression="DateTime.Now" type="System.DateTime"/>
+              <Property xsi:type="ScalarProperty" name="IsSynchronized" value="true" type="System.Boolean"/>
+            </Properties>
+            <DataSource xsi:type="DBEntityDataSource">
+              <Read>
+                <![CDATA[ 
+                SELECT C.ROWID, C.Name 
+                FROM Country C 
+                JOIN BusinessArea BA on C.BusinessAreaId = BA.RowId 
+                Where BA.Name = "@BusinessAreaFolder.Name"]]>
+              </Read>
+              <Create/>
+              <Update/>
+              <Delete/>
+            </DataSource>
+            <Behaviors>
+              <Behavior xsi:type="DefaultBehavior" a:Action="OnOpen" xmlns:a="modelex"/>
+              <Behavior xsi:type="CodeBehavior" inputParameterName="e" a:Action="OnCreate" xmlns:a="modelex">
+                <Code>
+
+                </Code>
+              </Behavior>
+            </Behaviors>
+          </Entity>
+
+          <BodyView xsi:type="StandardView">
+            <Columns>
+              <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+              <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+              <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+              <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+            </Columns>
+          </BodyView>
+
+          <Folders>
+            <Folder name="ProgramFolder" displayProperty="Name">
+              <Entity>
+                <Properties>
+                  <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                  <Property xsi:type="EvaluatedProperty" name="Modified" expression="DateTime.Now" type="System.DateTime"/>
+                  <Property xsi:type="ScalarProperty" name="IsSynchronized" value="true" type="System.Boolean"/>
+                </Properties>
+                <DataSource xsi:type="DBEntityDataSource">
+                  <Read>
+                    <![CDATA[ 
+                      SELECT "Program" as Name
+                      ]]>
+                  </Read>
+                  <Create/>
+                  <Update/>
+                  <Delete/>
+                </DataSource>
+              </Entity>
+              <BodyView xsi:type="StandardView">
+                <Columns>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+                </Columns>
+              </BodyView>
+              <Files>
+                <File name="TaxFile" displayProperty="Name">
+                  <Entity>
+                    <Properties>
+                      <Property xsi:type="DataPropertyScalar" name="Id" source="ROWID" type="System.Int64"/>
+                      <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                    </Properties>
+                    <DataSource xsi:type="DBEntityDataSource">
+                      <Read>
+                        <![CDATA[ 
+                      SELECT T.ROWID, T.Name 
+                      FROM Tax T JOIN Country C on T.CountryId = C.RowId 
+                      JOIN BusinessArea BA on C.BusinessAreaId = BA.RowId 
+                      WHERE C.Name = "@RegimeFolder.Name" 
+                      and BA.Name = "@RegimeFolder.BusinessAreaFolder.Name"
+                      ]]>
+                      </Read>
+                      <Create/>
+                      <Update/>
+                      <Delete/>
+                    </DataSource>
+                  </Entity>
+                </File>
+              </Files>
+            </Folder>
+            <Folder name="DataFolder" displayProperty="Name" displayFormat="UPPER">
+              <Entity>
+                <Properties>
+                  <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                  <Property xsi:type="EvaluatedProperty" name="Modified" expression="DateTime.Now" type="System.DateTime"/>
+                  <Property xsi:type="ScalarProperty" name="IsSynchronized" value="true" type="System.Boolean"/>
+                </Properties>
+                <DataSource xsi:type="DBEntityDataSource">
+                  <Read>
+                    <![CDATA[ SELECT "Data" as Name ]]>
+                  </Read>
+                  <Create/>
+                  <Update/>
+                  <Delete/>
+                </DataSource>
+              </Entity>
+              <BodyView xsi:type="StandardView">
+                <Columns>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+                  <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+                </Columns>
+              </BodyView>
+              <Folders>
+                <Folder name="AssetsFolder" displayProperty="Name">
+                  <Entity>
+                    <Properties>
+                      <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                    </Properties>
+                    <DataSource xsi:type="DBEntityDataSource">
+                      <Read>
+                        <![CDATA[SELECT "Assets" as Name]]>
+                      </Read>
+                      <Create/>
+                      <Update/>
+                      <Delete/>
+                    </DataSource>
+                    <Behaviors>
+                      <Behavior xsi:type="CodeBehavior" a:Action="OnOpen" xmlns:a="modelex" inputParameterName="e" priority="1">
+                        <Code>
+
+                        </Code>
+                      </Behavior>
+                    </Behaviors>
+                  </Entity>
+                  <BodyView xsi:type="StandardView">
+                    <Columns>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+                    </Columns>
+                  </BodyView>
+                  <Files>
+                    <File name="AssetFile" displayProperty="Name">
+                      <Entity>
+                        <Properties>
+                          <Property xsi:type="DataPropertyScalar" name="Id" source="ROWID" type="System.Int64"/>
+                          <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                          <Property xsi:type="EvaluatedProperty" name="Modified" expression="DateTime.Now" type="System.DateTime"/>
+                          <Property xsi:type="ScalarProperty" name="IsSynchronized" value="true" type="System.Boolean"/>
+                        </Properties>
+                        <DataSource xsi:type="DBEntityDataSource">
+                          <Read>
+                            <![CDATA[ 
+                              SELECT A.ROWID, A.Name 
+                              FROM Asset A JOIN Country C on A.CountryId = C.RowId 
+                              JOIN BusinessArea BA on C.BusinessAreaId = BA.RowId 
+                              WHERE C.Name = "@RegimeFolder.Name" 
+                              and BA.Name = "@RegimeFolder.BusinessAreaFolder.Name"
+                              ]]>
+                          </Read>
+                          <Create/>
+                          <Update/>
+                          <Delete/>
+                        </DataSource>
+                      </Entity>
+                    </File>
+                  </Files>
+                </Folder>
+                <Folder name="CompaniesFolder" displayProperty="Name">
+                  <Entity>
+                    <Properties>
+                      <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                    </Properties>
+                    <DataSource xsi:type="DBEntityDataSource">
+                      <Read>
+                        <![CDATA[ SELECT "Companies" as Name ]]>
+                      </Read>
+                      <Create/>
+                      <Update/>
+                      <Delete/>
+                    </DataSource>
+                  </Entity>
+                  <BodyView xsi:type="StandardView">
+                    <Columns>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+                    </Columns>
+                  </BodyView>
+                </Folder>
+                <Folder name="PricesFolder" displayProperty="Name">
+                  <Entity>
+                    <Properties>
+                      <Property xsi:type="DataPropertyScalar" name="Name" source="Name" type="System.String"/>
+                    </Properties>
+                    <DataSource xsi:type="DBEntityDataSource">
+                      <Read>
+                        <![CDATA[ SELECT "Prices" as Name ]]>
+                      </Read>
+                      <Create/>
+                      <Update/>
+                      <Delete/>
+                    </DataSource>
+                  </Entity>
+                  <BodyView xsi:type="StandardView">
+                    <Columns>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Name" name="Name"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Owner" name="Owner"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="Modified" name="Modified"/>
+                      <Column xsi:type="EntityMappedViewColumn" entityProperty="IsSynchronized" name="Sync?"/>
+                    </Columns>
+                  </BodyView>
+                </Folder>
+              </Folders>
+            </Folder>
+          </Folders>
+
+        </Folder>
+      </Folders>
+    </Folder>
+  </Folders>
+  <Files/>
+  <CalculationModels>
+    <CalculationModel id="calc_assetCalc" name="Asset Calc Model" xsi:type="WorkflowCalculationModel">
+      <Xaml>
+        <![CDATA[
+        <Activity mc:Ignorable="sap sap2010 sads" x:Class="ActivityLibraryTest.DemoApp"
+          xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+         xmlns:local="clr-namespace:ActivityLibraryTest.SpreadsheetGearActivities"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+         xmlns:s="clr-namespace:SpreadsheetGear;assembly=SpreadsheetGear2012.Core"
+         xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+         xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+         xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+         xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+         xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+          <x:Members>
+            <x:Property Name="assetfilePath" Type="InArgument(x:String)" />
+            <x:Property Name="pricefilePath" Type="InArgument(x:String)" />
+            <x:Property Name="reportTemplatePath" Type="InArgument(x:String)" />
+            <x:Property Name="reportfilePath" Type="InArgument(x:String)" />
+            <x:Property Name="calcfilePath" Type="InArgument(x:String)" />
+            <x:Property Name="isCompanyCalc" Type="InArgument(x:Boolean)" />
+          </x:Members>
+          <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+          <sap2010:WorkflowViewState.IdRef>ActivityLibraryTest.DemoApp_1</sap2010:WorkflowViewState.IdRef>
+          <TextExpression.NamespacesForImplementation>
+            <sco:Collection x:TypeArguments="x:String">
+              <x:String>System</x:String>
+              <x:String>System.Collections.Generic</x:String>
+              <x:String>System.Data</x:String>
+              <x:String>System.Linq</x:String>
+              <x:String>System.Text</x:String>
+              <x:String>SpreadsheetGear</x:String>
+            </sco:Collection>
+          </TextExpression.NamespacesForImplementation>
+          <TextExpression.ReferencesForImplementation>
+            <sco:Collection x:TypeArguments="AssemblyReference">
+              <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+              <AssemblyReference>PresentationCore</AssemblyReference>
+              <AssemblyReference>PresentationFramework</AssemblyReference>
+              <AssemblyReference>SpreadsheetGear2012.Core</AssemblyReference>
+              <AssemblyReference>System</AssemblyReference>
+              <AssemblyReference>System.Activities</AssemblyReference>
+              <AssemblyReference>System.Activities.Presentation</AssemblyReference>
+              <AssemblyReference>System.Core</AssemblyReference>
+              <AssemblyReference>System.Data</AssemblyReference>
+              <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+              <AssemblyReference>System.ServiceModel</AssemblyReference>
+              <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+              <AssemblyReference>System.Xaml</AssemblyReference>
+              <AssemblyReference>System.Xml</AssemblyReference>
+              <AssemblyReference>System.Xml.Linq</AssemblyReference>
+              <AssemblyReference>WindowsBase</AssemblyReference>
+              <AssemblyReference>ExampleClasses</AssemblyReference>
+              <AssemblyReference>mscorlib</AssemblyReference>
+              <AssemblyReference>ActivityLibraryTest</AssemblyReference>
+            </sco:Collection>
+          </TextExpression.ReferencesForImplementation>
+          <Sequence DisplayName="AssetCalculation" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="s:IWorkbook" Name="assetWorkbook" />
+              <Variable x:TypeArguments="s:IWorkbook" Name="priceWorkbook" />
+              <Variable x:TypeArguments="s:IWorkbook" Name="calcWorkbook" />
+              <Variable x:TypeArguments="s:IWorkbook" Name="reportWorkbook" />
+            </Sequence.Variables>
+            <local:OpenWorkbook DisplayName="OpenCalcWorkbook" sap2010:WorkflowViewState.IdRef="OpenWorkbook_1">
+              <local:OpenWorkbook.Filename>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">calcfilePath</mca:CSharpValue>
+                </InArgument>
+              </local:OpenWorkbook.Filename>
+              <local:OpenWorkbook.Result>
+                <OutArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpReference x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpReference>
+                </OutArgument>
+              </local:OpenWorkbook.Result>
+            </local:OpenWorkbook>
+            <local:OpenWorkbook DisplayName="OpenAsset" sap2010:WorkflowViewState.IdRef="OpenWorkbook_2">
+              <local:OpenWorkbook.Filename>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">assetfilePath</mca:CSharpValue>
+                </InArgument>
+              </local:OpenWorkbook.Filename>
+              <local:OpenWorkbook.Result>
+                <OutArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpReference x:TypeArguments="s:IWorkbook">assetWorkbook</mca:CSharpReference>
+                </OutArgument>
+              </local:OpenWorkbook.Result>
+            </local:OpenWorkbook>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_1" SourceRange="AssetData" TargetRange="AssetInput">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">assetWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:CloseWorkbook DisplayName="CloseAsset" sap2010:WorkflowViewState.IdRef="CloseWorkbook_1" Save="False">
+              <local:CloseWorkbook.Workbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">assetWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:CloseWorkbook.Workbook>
+            </local:CloseWorkbook>
+            <local:OpenWorkbook DisplayName="OpenPrices" sap2010:WorkflowViewState.IdRef="OpenWorkbook_3">
+              <local:OpenWorkbook.Filename>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">pricefilePath</mca:CSharpValue>
+                </InArgument>
+              </local:OpenWorkbook.Filename>
+              <local:OpenWorkbook.Result>
+                <OutArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpReference x:TypeArguments="s:IWorkbook">priceWorkbook</mca:CSharpReference>
+                </OutArgument>
+              </local:OpenWorkbook.Result>
+            </local:OpenWorkbook>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_2" SourceRange="PriceData" TargetRange="PriceInput">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">priceWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:CloseWorkbook DisplayName="ClosePrices" sap2010:WorkflowViewState.IdRef="CloseWorkbook_2" Save="False">
+              <local:CloseWorkbook.Workbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">priceWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:CloseWorkbook.Workbook>
+            </local:CloseWorkbook>
+            <If sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">isCompanyCalc</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <local:WriteToExcelFile DisplayName="WriteIsCompany" sap2010:WorkflowViewState.IdRef="WriteToExcelFile_1" RangeName="CompanyCalc">
+                  <local:WriteToExcelFile.Data>
+                    <InArgument x:TypeArguments="x:Object">
+                      <mca:CSharpValue x:TypeArguments="x:Object">1</mca:CSharpValue>
+                    </InArgument>
+                  </local:WriteToExcelFile.Data>
+                  <local:WriteToExcelFile.Target>
+                    <InArgument x:TypeArguments="s:IWorkbook">
+                      <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                    </InArgument>
+                  </local:WriteToExcelFile.Target>
+                </local:WriteToExcelFile>
+              </If.Then>
+              <If.Else>
+                <local:WriteToExcelFile DisplayName="WriteIsNotCompany" sap2010:WorkflowViewState.IdRef="WriteToExcelFile_2" RangeName="CompanyCalc">
+                  <local:WriteToExcelFile.Data>
+                    <InArgument x:TypeArguments="x:Object">
+                      <mca:CSharpValue x:TypeArguments="x:Object">0</mca:CSharpValue>
+                    </InArgument>
+                  </local:WriteToExcelFile.Data>
+                  <local:WriteToExcelFile.Target>
+                    <InArgument x:TypeArguments="s:IWorkbook">
+                      <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                    </InArgument>
+                  </local:WriteToExcelFile.Target>
+                </local:WriteToExcelFile>
+              </If.Else>
+            </If>
+            <local:CalculateWorkbook sap2010:WorkflowViewState.IdRef="CalculateWorkbook_1">
+              <local:CalculateWorkbook.Workbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:CalculateWorkbook.Workbook>
+            </local:CalculateWorkbook>
+            <local:CreateReportWorkbook sap2010:WorkflowViewState.IdRef="CreateReportWorkbook_1">
+              <local:CreateReportWorkbook.Filename>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">reportfilePath</mca:CSharpValue>
+                </InArgument>
+              </local:CreateReportWorkbook.Filename>
+              <local:CreateReportWorkbook.Result>
+                <OutArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpReference x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpReference>
+                </OutArgument>
+              </local:CreateReportWorkbook.Result>
+              <local:CreateReportWorkbook.Template>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">reportTemplatePath</mca:CSharpValue>
+                </InArgument>
+              </local:CreateReportWorkbook.Template>
+            </local:CreateReportWorkbook>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_3" SourceRange="AssetOutput" TargetRange="ReportProduction">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_4" SourceRange="PriceOutput" TargetRange="ReportPrices">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_5" SourceRange="Output" TargetRange="ReportCalculations">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_6" SourceRange="YearOutput" TargetRange="ReportYear">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:TransferData sap2010:WorkflowViewState.IdRef="TransferData_7" SourceRange="YearOutput" TargetRange="ReportYearPrices">
+              <local:TransferData.SourceWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.SourceWorkbook>
+              <local:TransferData.TargetWorkbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:TransferData.TargetWorkbook>
+            </local:TransferData>
+            <local:CloseWorkbook sap2010:WorkflowViewState.IdRef="CloseWorkbook_3" Save="False">
+              <local:CloseWorkbook.Workbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">calcWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:CloseWorkbook.Workbook>
+            </local:CloseWorkbook>
+            <local:CloseWorkbook sap2010:WorkflowViewState.IdRef="CloseWorkbook_4" Save="True">
+              <local:CloseWorkbook.Workbook>
+                <InArgument x:TypeArguments="s:IWorkbook">
+                  <mca:CSharpValue x:TypeArguments="s:IWorkbook">reportWorkbook</mca:CSharpValue>
+                </InArgument>
+              </local:CloseWorkbook.Workbook>
+            </local:CloseWorkbook>
+            <sads:DebugSymbol.Symbol>d21DOlxVc2Vyc1xqYW1pZV8wMDBcZG9jdW1lbnRzXHZpc3VhbCBzdHVkaW8gMjAxM1xQcm9qZWN0c1xBY3Rpdml0eUxpYnJhcnlUZXN0XEFjdGl2aXR5TGlicmFyeVRlc3RcRGVtb0FwcC54YW1sSTgDjwIOAgEBPwVKGgMB/QJLBVYaAwHmAlcFYhoDAc0CYwVpGwMBwAJqBXUaAwGpAnYFgQEaAwGQAoIBBYgBGwMBgwKJAQWrAQoDAccBrAEFsgEfAwG7AbMBBcMBIgMBmQHEAQXPARoDAYAB0AEF2wEaAgFn3AEF5wEaAgFO6AEF8wEaAgE19AEF/wEaAgEcgAIFhgIbAgEPhwIFjQIbAgECQgtCVQMBiQNHC0dgAwH+Ak4LTlYDAfICUwtTYQMB5wJfC19YAwHbAloLWlkDAdACV25XegMBzwJXVldhAwHOAmNqY3EDAcwCZgtmWQMBwQJtC21WAwG1AnILcmEDAaoCfgt+WAMBngJ5C3lZAwGTAnZudnoDAZICdlZ2YQMBkQKCAWuCAXIDAY8ChQELhQFZAwGEAowBC4wBVwMByAGQAQmbASIDAesBngEJqQEiAwHTAa8BC68BWAMBvAHAAQvAAVsDAbABtgELtgFXAwGlAbsBC7sBYgMBmgHMAQvMAVoDAY4BxwELxwFYAwGDAcQBcMQBggEDAYIBxAFWxAFjAwGBAdgBC9gBWgIBddMBC9MBWAIBatABcNABfgIBadABVtABYwIBaOQBC+QBWgIBXN8BC98BWAIBUdwBa9wBfwIBUNwBVtwBXgIBT/ABC/ABWgIBQ+sBC+sBWAIBOOgBb+gBewIBN+gBVugBYgIBNvwBC/wBWgIBKvcBC/cBWAIBH/QBb/QBgQECAR70AVb0AWICAR2AAlGAAlgCARuDAguDAlgCARCHAlGHAlcCAQ6KAguKAloCAQOYAQ+YAVwDAfgBkwEPkwFOAwHtAZABfZABigEDAewBpgEPpgFcAwHgAaEBD6EBTgMB1QGeAYABngGNAQMB1AE=</sads:DebugSymbol.Symbol>
+          </Sequence>
+          <sap2010:WorkflowViewState.ViewStateManager>
+            <sap2010:ViewStateManager>
+              <sap2010:ViewStateData Id="OpenWorkbook_1" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="OpenWorkbook_2" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="TransferData_1" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="CloseWorkbook_1" sap:VirtualizedContainerService.HintSize="464,108">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </sap2010:ViewStateData>
+              <sap2010:ViewStateData Id="OpenWorkbook_3" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="TransferData_2" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="CloseWorkbook_2" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="WriteToExcelFile_1" sap:VirtualizedContainerService.HintSize="200,144" />
+              <sap2010:ViewStateData Id="WriteToExcelFile_2" sap:VirtualizedContainerService.HintSize="200,144" />
+              <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,297.333333333333" />
+              <sap2010:ViewStateData Id="CalculateWorkbook_1" sap:VirtualizedContainerService.HintSize="464,72" />
+              <sap2010:ViewStateData Id="CreateReportWorkbook_1" sap:VirtualizedContainerService.HintSize="464,144" />
+              <sap2010:ViewStateData Id="TransferData_3" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="TransferData_4" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="TransferData_5" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="TransferData_6" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="TransferData_7" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="CloseWorkbook_3" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="CloseWorkbook_4" sap:VirtualizedContainerService.HintSize="464,108" />
+              <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,2789.33333333333">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </sap2010:ViewStateData>
+              <sap2010:ViewStateData Id="ActivityLibraryTest.DemoApp_1" sap:VirtualizedContainerService.HintSize="526,2869.33333333333" />
+            </sap2010:ViewStateManager>
+          </sap2010:WorkflowViewState.ViewStateManager>
+        </Activity>
+        ]]>
+      </Xaml>
+    </CalculationModel>
+  </CalculationModels>
+  <ReportModels>
+    <ReportModel xsi:type="ExcelReportModel" id="rpt_assetCalc" name="Asset Calc Report">
+      <CalculationModels>
+        <CalculationModel modelId="calc_assetCalc"/>
+      </CalculationModels>
+      <Entity>
+        <Properties>
+          <Property xsi:type="DataPropertyScalar" name="Id" type="System.Int64" source="ROWID"/>
+          <Property xsi:type="DataPropertyScalar" name="ReportName" type="System.String" source="name"/>
+          <Property xsi:type="DataPropertyScalar" name="AssetFilePath" type="System.String" source="assetPath"/>
+          <Property xsi:type="DataPropertyScalar" name="PriceFilePath" type="System.String" source="pricePath"/>
+          <Property xsi:type="DataPropertyScalar" name="ReportTemplatePath" type="System.String" source="reportPath"/>
+          <Property xsi:type="DataPropertyScalar" name="CalcFilePath" type="System.String" source="calcPath"/>
+          <Property xsi:type="DataPropertyScalar" name="IsCompanyCalc" type="System.Boolean" source="isCompany"/>
+        </Properties>
+        <DataSource xsi:type="DBEntityDataSource">
+          <List>
+            <![CDATA[SELECT * FROM Reports R WHERE R.Type = "Upstream/LNG";]]>
+          </List>
+          <Read>
+            <![CDATA[SELECT * FROM Reports R WHERE R.Name = @this.reportName;]]>
+          </Read>
+          <Create>
+            <![CDATA[INSERT INTO Reports (Name, AssetPath, PricePath, ReportPath, CalcPath, IsCompany)
+            Values(@this.ReportName, @this.AssetFilePath, @this.PriceFilePath, @this.ReportTemplatePath, @this.CalcFilePath, @this.IsCompanyCalc);]]>
+          </Create>
+          <Update>
+            <![CDATA[UPDATE Reports R
+            Set R.Name = @this.ReportName,
+            R.AssetPath = @this.AssetFilePath,
+            R.PricePath = @this.PriceFilePath,
+            R.ReportPath = @this.ReportTemplatePath
+            R.CalcPath = @this.CalcFilePath,
+            R.IsCompany = @this.IsCompany
+            WHERE R.Id = @this.Id;]]>
+          </Update>
+          <Delete>
+            <![CDATA[DELETE FROM Reports R WHERE R.Id = @this.Id;]]>
+          </Delete>
+        </DataSource>
+      </Entity>
+      <ParameterMappings>
+        <ParameterMapping entityProperty="assetFilePath" parameter="assetFilePath"/>
+      </ParameterMappings>
+      <ConfigurationViews>
+        <ConfigurationView xsi:type="WpfView">
+          <ViewXAML>
+
+          </ViewXAML>
+        </ConfigurationView>
+      </ConfigurationViews>
+    </ReportModel>
+  </ReportModels>
+</ModelEx>

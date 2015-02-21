@@ -1,0 +1,82 @@
+﻿<sap:ActivityDesigner x:Class="AcmeCo.Workflow.SpreadsheetGearActivities.ReadFromExcelFileDesigner"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
+    xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
+    xmlns:spread="clr-namespace:SpreadsheetGear;assembly=SpreadsheetGear2012.Core">
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary>
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter"/>
+            <DataTemplate x:Key="Collapsed">
+            </DataTemplate>
+            <DataTemplate x:Key="Expanded">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Workbook" Grid.Row="0" Grid.Column="0"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="=" Grid.Row="0" Grid.Column="1"/>
+                    <sapv:ExpressionTextBox
+                        HintText="Workbook"
+                        Expression="{Binding Path=ModelItem.Source, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter},ConverterParameter=In}"
+                        ExpressionType="spread:IWorkbook"
+                        OwnerActivity="{Binding Path=ModelItem}"
+                        Width="110"
+                        Margin="0,5"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        MaxLines="1"/>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Range Name" Grid.Row="1" Grid.Column="0"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="=" Grid.Row="1" Grid.Column="1"/>
+                    <sapv:ExpressionTextBox
+                        HintText="Range Name"
+                        Expression="{Binding Path=ModelItem.RangeName, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter},ConverterParameter=In}"
+                        ExpressionType="s:String"
+                        OwnerActivity="{Binding Path=ModelItem}"
+                        Width="110"
+                        Margin="0,5"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        MaxLines="1"/>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Assign to" Grid.Row="2" Grid.Column="0"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="=" Grid.Row="2" Grid.Column="1"/>
+                    <sapv:ExpressionTextBox
+                        HintText="Object"
+                        Expression="{Binding Path=ModelItem.Result, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter},ConverterParameter=Out}"
+                        ExpressionType="s:Object"
+                        OwnerActivity="{Binding Path=ModelItem}"
+                        UseLocationExpression="True"
+                        Width="110"
+                        Margin="0,5"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        MaxLines="1"/>
+                </Grid>
+            </DataTemplate>
+            <Style x:Key="ExpandOrCollapseStyle" TargetType="{x:Type ContentPresenter}">
+                <Setter Property="ContentTemplate" Value="{DynamicResource Collapsed}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=ShowExpanded}" Value="true">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource Expanded}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </sap:ActivityDesigner.Resources>
+    <Grid>
+        <ContentPresenter Style="{DynamicResource ExpandOrCollapseStyle}" Content="{Binding}"/>
+    </Grid>
+</sap:ActivityDesigner>
+

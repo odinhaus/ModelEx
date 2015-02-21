@@ -1,0 +1,452 @@
+﻿<UserControl x:Class="Altus.GEM.Views.Explorer_body"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Altus.UI.Converters;assembly=Modelex"
+             xmlns:selectors="clr-namespace:Altus.GEM.Selectors"
+             xmlns:c="clr-namespace:Altus.UI.Controls;assembly=Modelex"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000"
+             BorderThickness="0"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Modelex;component/Styles/Default_Styles.xaml"/>
+                <ResourceDictionary Source="..\Styles\Default_Styles.xaml"/>
+
+                <ResourceDictionary>
+                    <x:Array x:Key="FileTypes" Type="sys:String" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <sys:String>Data</sys:String>
+                        <sys:String>Models</sys:String>
+                        <sys:String>Reports</sys:String>
+                    </x:Array>
+
+                    <x:Array x:Key="DataTypes" Type="sys:String" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <sys:String>Assets</sys:String>
+                        <sys:String>Prices</sys:String>
+                        <sys:String>Taxes</sys:String>
+                    </x:Array>
+
+                    <x:Array x:Key="Sizes" Type="sys:String" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <sys:String>Large</sys:String>
+                        <sys:String>Small</sys:String>
+                        <sys:String>List</sys:String>
+                    </x:Array>
+
+
+                    <DataTemplate x:Key="DataItemFilterTop" 
+                              DataType="{x:Type ListBoxItem}">
+                        <ToggleButton Opacity="1"
+                                  Content="{Binding}" 
+                                  Background="Transparent"
+                                  IsChecked="{Binding IsSelected, 
+                                    Mode=TwoWay, 
+                                    RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type ListBoxItem}}}">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Style.Setters>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                    <Border BorderThickness="0" 
+                                                        BorderBrush="Black" 
+                                                        Background="Transparent"
+                                                        Margin="5,5,25,2">
+                                                        <ContentPresenter x:Name="Content"
+                                                            HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center" 
+                                                            SnapsToDevicePixels="True"
+                                                            TextBlock.FontSize="38"
+                                                            TextBlock.Foreground="White">
+                                                            <ContentPresenter.Effect>
+                                                                <DropShadowEffect BlurRadius="5" Color="Black" ShadowDepth="2"/>
+                                                            </ContentPresenter.Effect>
+                                                        </ContentPresenter>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsFocused" Value="True">
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsFocused" Value="False">
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style.Setters>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="DataItemFilterSide" 
+                              DataType="{x:Type ListBoxItem}">
+                        <ToggleButton Opacity="1"
+                                  Content="{Binding}" 
+                                  IsChecked="{Binding IsSelected, 
+                                    Mode=TwoWay, 
+                                    RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type ListBoxItem}}}"
+                                  HorizontalContentAlignment="Right">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Style.Setters>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <Grid HorizontalAlignment="Right"
+                                                        Background="Transparent"
+                                                        Margin="5,5,25,2">
+                                                        <ContentPresenter x:Name="Content"
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Center" 
+                                                            SnapsToDevicePixels="True"
+                                                            TextBlock.FontSize="24"
+                                                            TextBlock.Foreground="White">
+                                                            <ContentPresenter.Effect>
+                                                                <DropShadowEffect BlurRadius="5" Color="Black" ShadowDepth="2"/>
+                                                            </ContentPresenter.Effect>
+                                                        </ContentPresenter>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style.Setters>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </DataTemplate>
+
+                    <Style TargetType="{x:Type ListBoxItem}" x:Key="FilterItemStyle">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border Background="Transparent">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    
+                    
+                    <DataTemplate x:Key="ConfigDefault">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding File}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                    
+                    <converters:CenteringConverter x:Key="CenteringConverter"/>
+                    <converters:TranslateTransformToRectViewboxVisualBrushConverter x:Key="TranslateTransformToRectViewboxVisualBrushConverter"/>
+                    
+                    <selectors:ConfigViewContentTemplateSelector x:Key="configSelector"/>
+                    <selectors:EmbeddedDataTemplateSelector x:Key="ItemTemplateSelector"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Visibility="Visible">
+            <Grid x:Name="BlurContainer" 
+                  Background="#FF3a0626" 
+                  Opacity="0" 
+                  RenderTransformOrigin="0.5, 0.5" 
+                  Visibility="Visible"
+                  Margin="0">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard >
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.0" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform x:Name="NumPadTranslate" X="0" Y="0"/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2">
+                    <Rectangle.Effect>
+                        <BlurEffect Radius="35"/>
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <VisualBrush ViewboxUnits="Absolute" 
+                                         Viewbox="{Binding RenderTransform.Children[3], 
+                                            Converter={StaticResource TranslateTransformToRectViewboxVisualBrushConverter}, 
+                                            RelativeSource={RelativeSource Mode=FindAncestor, 
+                                            AncestorType={x:Type Grid}}, 
+                                            UpdateSourceTrigger=PropertyChanged}" 
+                                         AlignmentX="Left" 
+                                         AlignmentY="Top" 
+                                         Visual="{Binding ElementName=Background}" 
+                                         Stretch="None"
+                                        Opacity=".25">
+                            <VisualBrush.Transform>
+                                <TranslateTransform X="-20" Y="-20" />
+                            </VisualBrush.Transform>
+                        </VisualBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Grid.ColumnSpan="3" 
+                               Grid.RowSpan="2"  
+                               StrokeThickness="1" 
+                           Visibility="Collapsed">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="2,2">
+                            <GradientStop Color="#9755" Offset="0"/>
+                            <GradientStop Color="#2755" Offset="0.1" x:Name="Reflection"/>
+                            <GradientStop Color="#4755" Offset="0.21" x:Name="Reflection2"/>
+                            <GradientStop Color="#2755" Offset="0.412" x:Name="Reflection3"/>
+                            <GradientStop Color="#6755" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                    <Rectangle.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="2,2">
+                            <GradientStop Color="#99ffffff" Offset="0"/>
+                            <GradientStop Color="#44000000" Offset="0.2"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Stroke>
+                </Rectangle>
+            </Grid>
+        </Grid>
+        <DockPanel LastChildFill="True">
+            
+            <DockPanel DockPanel.Dock="Top">
+                <Control DockPanel.Dock="Left" Width="{Binding ElementName=DataFilter, Path=ActualWidth}"/>
+                <ComboBox DockPanel.Dock="Right" 
+                          FontSize="24" 
+                          Opacity=".75" 
+                          SelectedItem="{Binding ItemSize}" 
+                          Margin="0,10,10,10"
+                          Background="Black"
+                          Foreground="White"
+                          TextBlock.FontWeight="Bold"
+                          BorderThickness="0"
+                          ItemsSource="{StaticResource Sizes}"
+                          SelectedIndex="0"
+                          Style="{StaticResource ComboBoxFlatStyle}">
+                </ComboBox>
+                <ListBox x:Name="EntityFilter"
+                         ItemTemplate="{StaticResource DataItemFilterTop}"
+                         ItemContainerStyle="{StaticResource FilterItemStyle}"
+                         ItemsSource="{StaticResource FileTypes}"
+                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                         SelectionMode="Single">
+                    <ListBox.Style>
+                        <Style TargetType="ListBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBox">
+                                        <StackPanel Background="Transparent" 
+                                                    Orientation="Horizontal" 
+                                                    IsItemsHost="True"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.Style>
+                </ListBox>
+            </DockPanel>
+
+            <ListBox x:Name="DataFilter"
+                        DockPanel.Dock="Left"
+                     ItemContainerStyle="{StaticResource FilterItemStyle}"
+                        ItemTemplate="{StaticResource DataItemFilterSide}"
+                        ItemsSource="{StaticResource DataTypes}"
+                     HorizontalContentAlignment="Stretch"
+                     SelectedIndex="0"
+                     Width="110">
+                <ListBox.Style>
+                    <Style TargetType="ListBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBox">
+                                    <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.Style>
+            </ListBox>
+
+            <ListBox x:Name="BodyContent" 
+                     Background="Transparent" 
+                     BorderThickness="0"
+                     ItemsSource="{Binding Items}"
+                     ItemTemplateSelector="{StaticResource ItemTemplateSelector}"
+                     PreviewMouseLeftButtonDown="BodyContent_PreviewMouseLeftButtonDown"
+                     PreviewMouseRightButtonDown="BodyContent_PreviewMouseRightButtonDown"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ContextMenu>
+                    <ContextMenu x:Name="ItemMenu" Visibility="Collapsed">
+                        <MenuItem Header="Open" x:Name="MenuExecute" Click="MenuExecute_Click"/>
+                        <Separator/>
+                        <MenuItem Header="Properties" x:Name="MenuProperties" Click="MenuProperties_Click"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+            
+        </DockPanel>
+        <Rectangle x:Name="ConfigBg" Opacity=".8" Fill="Black" Visibility="Collapsed"/>
+        <Canvas>
+            <Grid x:Name="ConfigContainer" RenderTransformOrigin="0.5, 0.5" Visibility="Collapsed" Height="400" Width="600">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="20" Color="#f000" Opacity="1"/>
+                </Grid.Effect>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform x:Name="ConfigTranslate">
+                            <TranslateTransform.X>
+                                <MultiBinding Converter="{StaticResource CenteringConverter}">
+                                    <Binding Path="ActualWidth" ElementName="BodyCanvas"/>
+                                    <Binding Path="ActualWidth" ElementName="ConfigContainer"/>
+                                </MultiBinding>
+                            </TranslateTransform.X>
+                            <TranslateTransform.Y>
+                                <MultiBinding Converter="{StaticResource CenteringConverter}">
+                                    <Binding Path="ActualHeight" ElementName="BodyCanvas"/>
+                                    <Binding Path="ActualHeight" ElementName="ConfigContainer"/>
+                                </MultiBinding>
+                            </TranslateTransform.Y>
+                        </TranslateTransform>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2">
+                    <Rectangle.Effect>
+                        <BlurEffect Radius="25"/>
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <VisualBrush ViewboxUnits="Absolute" 
+                                             Viewbox="{Binding RenderTransform.Children[3], 
+                                                Converter={StaticResource TranslateTransformToRectViewboxVisualBrushConverter}, 
+                                                RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                AncestorType={x:Type Grid}}, 
+                                                UpdateSourceTrigger=PropertyChanged}" 
+                                             AlignmentX="Left" 
+                                             AlignmentY="Top" 
+                                             Visual="{Binding ElementName=BackgroundContainer}" 
+                                             Stretch="None">
+                            <VisualBrush.Transform>
+                                <TranslateTransform X="0" />
+                            </VisualBrush.Transform>
+                        </VisualBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Grid.ColumnSpan="3" 
+                                   Grid.RowSpan="2"  
+                                   StrokeThickness="1">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="2,2">
+                            <GradientStop Color="#9755" Offset="0"/>
+                            <GradientStop Color="#2755" Offset="0.1" x:Name="ConfigReflection"/>
+                            <GradientStop Color="#4755" Offset="0.21" x:Name="ConfigReflection2"/>
+                            <GradientStop Color="#2755" Offset="0.412" x:Name="ConfigReflection3"/>
+                            <GradientStop Color="#6755" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                    <Rectangle.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="2,2">
+                            <GradientStop Color="#99ffffff" Offset="0"/>
+                            <GradientStop Color="#44000000" Offset="0.2"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Stroke>
+                </Rectangle>
+                <Button Content="OK" Style="{DynamicResource TextButton}"
+                                x:Name="KeyPadOk" 
+                                Grid.Column="0" 
+                                Grid.Row="1" 
+                                FontWeight="Bold"
+                                Click="KeyPadOk_Click_1">
+                </Button>
+                <Button Content="cancel" Style="{DynamicResource TextButton}"
+                                x:Name="KeyPadCancel" 
+                                Grid.Column="2" 
+                                Grid.Row="1" 
+                                Click="KeyPadCancel_Click_1">
+                </Button>
+                <Grid Grid.Row="1" 
+                              x:Name="NumPadGripper" 
+                              Grid.Column="1">
+                    <c:SmallGripper Moving="SmallGripper_Moving_1"/>
+                </Grid>
+                <TabControl Grid.Row="0" 
+                            Grid.ColumnSpan="3" 
+                            x:Name="Tabs" 
+                            Background="Transparent"  
+                            ContentTemplateSelector="{StaticResource configSelector}">
+                    <TabControl.ItemContainerStyle>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Header" Value="{Binding Header}" />
+                        </Style>
+                    </TabControl.ItemContainerStyle>
+                </TabControl>
+        </Grid>
+        </Canvas>
+    </Grid>
+</UserControl>

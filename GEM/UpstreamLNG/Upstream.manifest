@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Targets>
+    <Target Product="ModelEx">
+      <Files>
+        <File Name="Upstream.manifest" Reflect="false" />
+        <File Name="Schema/GEM_Config.xsd" Reflect="false" />
+        <File Name="Schema/UpstreamLNG.xml" Reflect="false" IsAppConfig="true" />
+      </Files>
+    </Target>
+  </Targets>
+</Manifest>

@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3F642A5B-DA70-4289-A453-DF0E9C241D99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Altus.Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\Binaries\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony">
+      <HintPath>..\..\Binaries\Irony\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony.Interpreter">
+      <HintPath>..\..\Binaries\Irony\Irony.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>packages\System.Data.SQLite.Core.1.0.94.0\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arrays\ArrayEx.cs" />
+    <Compile Include="BitList.cs" />
+    <Compile Include="Bytes\ByteEx.cs" />
+    <Compile Include="Caching\ICache.cs" />
+    <Compile Include="Caching\WinCache.cs" />
+    <Compile Include="Collections\DictionaryEx.cs" />
+    <Compile Include="Collections\SafeObservableCollection.cs" />
+    <Compile Include="Compilation\CSCompiler.cs" />
+    <Compile Include="Compilation\MSBuildCompiler.cs" />
+    <Compile Include="Component\ASPNetHostContainer.cs" />
+    <Compile Include="Component\ComponentAttribute.cs" />
+    <Compile Include="Component\ComponentDependency.cs" />
+    <Compile Include="Component\ComponentLoader.cs" />
+    <Compile Include="Component\ComponentLoaderSection.cs" />
+    <Compile Include="Component\CompositionContainer.cs" />
+    <Compile Include="Component\CompositionContainerAttribute.cs" />
+    <Compile Include="Component\ModelEx.cs" />
+    <Compile Include="Component\ModelExAPI.cs" />
+    <Compile Include="Component\ModelExChild.cs" />
+    <Compile Include="Component\CoreAssemblyAttribute.cs" />
+    <Compile Include="Component\DiscoverableAssemblyAttribute.cs" />
+    <Compile Include="Component\IComponentLoader.cs" />
+    <Compile Include="Component\IInitialize.cs" />
+    <Compile Include="Component\IInstaller.cs" />
+    <Compile Include="Component\InitializableComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\InstallerComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\InstallerComponentAttribute.cs" />
+    <Compile Include="Component\ServiceContainer.cs" />
+    <Compile Include="Component\WPFContainer.cs" />
+    <Compile Include="Compression\CompressionHelper.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Configuration\ConfigValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Configuration\DbConnectionInfo.cs" />
+    <Compile Include="Configuration\ModelEx.cs">
+      <DependentUpon>ModelEx.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Context.cs" />
+    <Compile Include="ContextBase.cs" />
+    <Compile Include="Data\AppDataContextAttribute.cs" />
+    <Compile Include="Data\BinaryTree.cs" />
+    <Compile Include="Data\DataContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContextAttribute.cs" />
+    <Compile Include="Data\DbLock.cs" />
+    <Compile Include="Data\IDbConnection.cs" />
+    <Compile Include="Data\IDbConnectionManager.cs" />
+    <Compile Include="Data\IMetaDataContext.cs" />
+    <Compile Include="Data\IReplicationManager.cs" />
+    <Compile Include="Data\MetaDataContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\MetaData_Stub.cs" />
+    <Compile Include="Data\SQLite\MetaDataContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\SQLite\MetaDataContextConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SQLite\MetaDataContextConnectionManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\SQLite\MetaDataContextEx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SQLite\SQLiteDbLock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SQLite\SQLiteSchema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\StorageFieldConstraintAttribute.cs" />
+    <Compile Include="Data\StorageFieldMappingAttribute.cs" />
+    <Compile Include="Data\StorageMapping.cs" />
+    <Compile Include="Data\StorageMappingAttribute.cs" />
+    <Compile Include="Data\TransactionContext.cs" />
+    <Compile Include="DateTime\CurrentTime.cs" />
+    <Compile Include="DateTime\DateRange.cs" />
+    <Compile Include="DateTime\DateTimeEx.cs" />
+    <Compile Include="Diagnostics\DirectObjectLogWriter.cs" />
+    <Compile Include="Diagnostics\LazyObjectLogWriter.cs" />
+    <Compile Include="Diagnostics\Logger.cs" />
+    <Compile Include="Diagnostics\LoggerEx.cs" />
+    <Compile Include="Diagnostics\MetricsHelper.cs" />
+    <Compile Include="Diagnostics\PerformanceCounter.cs" />
+    <Compile Include="Diagnostics\PerformanceCounterInstallAttribute.cs" />
+    <Compile Include="Diagnostics\PerformanceCounterNames.cs" />
+    <None Include="Configuration\ModelEx.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\SQLite\Core.db3" />
+    <None Include="Dynamic\AssembyLoader.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="Dynamic\Communicator.cs" />
+    <None Include="Dynamic\Components\ComponentManifest.cs" />
+    <Compile Include="Dynamic\Components\DynamicComponentLoader.cs" />
+    <Compile Include="Dynamic\Components\DynamicHost.cs" />
+    <Compile Include="Dynamic\Components\DynamicShell.cs" />
+    <Compile Include="Dynamic\Components\ShellDefinition.cs" />
+    <Compile Include="Dynamic\Config\DynamicPropertyBase.cs" />
+    <Compile Include="Dynamic\Config\DynamicPropertyConfig.cs" />
+    <Compile Include="Dynamic\Config\DynamicPropertyText.cs" />
+    <Compile Include="Dynamic\DynamicField.cs" />
+    <Compile Include="Dynamic\DynamicFunction.cs" />
+    <Compile Include="Dynamic\DynamicFunctionEvaluatorBuilder.cs" />
+    <Compile Include="Dynamic\DynamicObjectSpace.cs" />
+    <Compile Include="Dynamic\DynamicProperty.cs" />
+    <Compile Include="Dynamic\DynamicPropertyEvaluatorBuilder.cs" />
+    <Compile Include="Dynamic\DynamicWrapper.cs" />
+    <Compile Include="Dynamic\Extendable.cs" />
+    <Compile Include="Dynamic\FunctionEvaluator.cs" />
+    <Compile Include="Dynamic\IDynamicFunctionEvaluator.cs" />
+    <Compile Include="Dynamic\IDynamicPropertyEvaluator.cs" />
+    <Compile Include="Dynamic\PropertyChangedWrapperEventData.cs" />
+    <None Include="Dynamic\PropertyEvaluator.cs" />
+    <Compile Include="Dynamic\RelatedField.cs" />
+    <Compile Include="Dynamic\RuntimeTypeBuilder.cs" />
+    <Compile Include="Entities\AbstractEntity.cs" />
+    <Compile Include="Enums\EnumEx.cs" />
+    <Compile Include="Exceptions\ExceptionHelper.cs" />
+    <Compile Include="Exceptions\GenericException.cs" />
+    <Compile Include="Licensing\DeclaredApp.cs" />
+    <Compile Include="Licensing\DiscoveryRequest.cs" />
+    <Compile Include="Licensing\ILicense.cs" />
+    <Compile Include="Licensing\ILicensedComponent.cs" />
+    <Compile Include="Licensing\ILicensedInstaller.cs" />
+    <Compile Include="Licensing\ILicenseManager.cs" />
+    <Compile Include="Licensing\LicensedAppInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Licensing\LicensedAppProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Licensing\LicensedComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Licensing\LicensedInstallerComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Licensing\XmlFileLicense.cs" />
+    <Compile Include="Licensing\XmlFileLicenseManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Memory\Memory.cs" />
+    <Compile Include="Messaging\Communicator.cs" />
+    <Compile Include="Messaging\ConnectionManager.cs" />
+    <Compile Include="Messaging\ContentTypesSection.cs" />
+    <None Include="Messaging\Http\HttpClient.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="Messaging\Http\AspHttpRequestProcessor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Messaging\Http\DefaultHttpRequestProcessor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Messaging\Http\HttpConnection.cs" />
+    <Compile Include="Messaging\Http\HttpForm.cs" />
+    <Compile Include="Messaging\Http\HttpHost.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Messaging\Http\HttpRequestProcessorFactory.cs" />
+    <Compile Include="Messaging\Http\HttpResponseHeaderAttribute.cs" />
+    <Compile Include="Messaging\Http\IHttpRequestProcessor.cs" />
+    <Compile Include="Messaging\IConnection.cs" />
+    <Compile Include="Messaging\Message.cs" />
+    <Compile Include="Messaging\MessageSegment.cs" />
+    <None Include="Messaging\MessagingClient.cs" />
+    <None Include="Messaging\MessagingPipeline.cs">
+      <SubType>Component</SubType>
+    </None>
+    <None Include="Messaging\Tcp\TcpClient.cs" />
+    <Compile Include="Messaging\Tcp\TcpConnection.cs" />
+    <Compile Include="Messaging\Tcp\TcpFault.cs" />
+    <Compile Include="Messaging\Tcp\TcpHeader.cs" />
+    <Compile Include="Messaging\Tcp\TcpHeaderSegment.cs" />
+    <Compile Include="Messaging\Tcp\TcpHost.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Messaging\Tcp\TcpMessage.cs" />
+    <Compile Include="Messaging\Tcp\TcpSegmentSegment.cs" />
+    <Compile Include="Messaging\Udp\MulticastConnection.cs" />
+    <Compile Include="Messaging\Udp\UdpConnection.cs" />
+    <Compile Include="Messaging\Udp\UdpHeaderSegment.cs" />
+    <Compile Include="Messaging\Udp\UdpHost.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Messaging\Udp\UdpMessage.cs" />
+    <Compile Include="Messaging\Udp\UdpSegmentSegment.cs" />
+    <None Include="Messaging\Udp\UdpTcpBridgeClient.cs">
+      <SubType>Component</SubType>
+    </None>
+    <None Include="Messaging\Udp\UdpTcpBridgeHost.cs">
+      <SubType>Component</SubType>
+    </None>
+    <None Include="Messaging\Udp\UdpTcpBridgeStream.cs" />
+    <None Include="Messaging\Udp\UdpTopicAllocationStrategy.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="Net\IPEndPointEx.cs" />
+    <Compile Include="Pipeline\IPipeline.cs" />
+    <Compile Include="Pipeline\IProcessor.cs" />
+    <Compile Include="Presentation\Commands\Command.cs" />
+    <Compile Include="Presentation\ViewModels\Application.cs" />
+    <Compile Include="Presentation\ViewModels\ISupportsDirty.cs" />
+    <Compile Include="Presentation\ViewModels\ISupportsNavigation.cs" />
+    <Compile Include="Presentation\ViewModels\ISupportsStatus.cs" />
+    <Compile Include="Presentation\ViewModels\View.cs" />
+    <Compile Include="Presentation\ViewModels\ViewList.cs" />
+    <Compile Include="Presentation\ViewModels\WinView.cs" />
+    <Compile Include="Presentation\ViewModels\WPFView.cs" />
+    <Compile Include="Presentation\WPF\Converters\ViewStyleConverter.cs" />
+    <Compile Include="Presentation\WPF\Converters\ViewStyleSelectorConverter.cs" />
+    <Compile Include="Presentation\WPF\Converters\ViewTemplateSelectorConverter.cs" />
+    <Compile Include="Presentation\WPF\DependencyObjectEx.cs" />
+    <Compile Include="Presentation\WPF\Runtime\IDataTemplateLoader.cs" />
+    <Compile Include="Presentation\WPF\Runtime\IStyleLoader.cs" />
+    <Compile Include="Presentation\WPF\Runtime\IXAMLTemplateProcessor.cs" />
+    <Compile Include="Presentation\WPF\Runtime\MetaDataTemplateLoader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Presentation\WPF\Runtime\ViewStyleSelector.cs" />
+    <Compile Include="Presentation\WPF\Runtime\ViewTemplateSelector.cs" />
+    <Compile Include="Presentation\WPF\Runtime\XAMLTemplateEventProcessor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Presentation\WPF\Views\ShellWindow.cs" />
+    <Compile Include="Processing\AsyncResponse.cs" />
+    <Compile Include="Processing\Msp\HtmlElementList.cs" />
+    <Compile Include="Processing\Msp\HttpFile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\Msp\MspContext.cs" />
+    <Compile Include="Processing\Msp\MspEndPointAttribute.cs" />
+    <Compile Include="Processing\Msp\MspOperationAttribute.cs" />
+    <Compile Include="Processing\Msp\MspOperationProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\Msp\MspPipeline.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\Msp\MspProcessorsSection.cs" />
+    <Compile Include="Processing\Msp\MspRequest.cs" />
+    <Compile Include="Processing\Msp\MspResponse.cs" />
+    <Compile Include="Processing\Msp\Page.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\OptionalAttribute.cs" />
+    <Compile Include="Processing\Rpc\RpcContext.cs" />
+    <Compile Include="Processing\Rpc\RpcEndPointAttribute.cs" />
+    <Compile Include="Processing\Rpc\RpcOperationAttribute.cs" />
+    <Compile Include="Processing\Rpc\RpcOperationProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\Rpc\RpcPipeline.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\Rpc\RpcProcessorsSection.cs" />
+    <Compile Include="Processing\Rpc\RpcProxy.cs" />
+    <Compile Include="Processing\Rpc\RpcRequest.cs" />
+    <Compile Include="Processing\Rpc\RpcResponse.cs" />
+    <Compile Include="Processing\ServiceContext.cs" />
+    <Compile Include="Processing\ServiceContextFactory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\ServiceContextInstance.cs" />
+    <Compile Include="Processing\ServiceEndPointAttribute.cs" />
+    <Compile Include="Processing\ServiceEndPointManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\ServiceOperation.cs" />
+    <Compile Include="Processing\ServiceOperationAttribute.cs" />
+    <Compile Include="Processing\ServiceOperationProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\ServiceParameter.cs" />
+    <Compile Include="Processing\ServiceParameterCollection.cs" />
+    <Compile Include="Processing\ServiceRequest.cs" />
+    <Compile Include="Processing\ServiceResponse.cs" />
+    <Compile Include="Processing\ServiceRoute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PubSub\Dynamic\DynamicTopic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\Dynamic\DynamicTopicManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PubSub\IPublisherProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\ISubscriberProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\MulticastSubscriberProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\PublicationAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\PublicationContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PubSub\PublicationDefinition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\Publisher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\ReflectionPublicationContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PubSub\ReflectionSubscriberContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\Subscriber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\Subscription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\SubscriptionAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\SubscriptionContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\SubscriptionDefinition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PubSub\Topic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Realtime\Field.cs" />
+    <Compile Include="Realtime\FieldConfig.cs" />
+    <Compile Include="Realtime\FieldName.cs" />
+    <Compile Include="Realtime\IFieldSource.cs" />
+    <Compile Include="Reflection\AssemblyEx.cs" />
+    <Compile Include="Reflection\TypeHelper.cs" />
+    <Compile Include="Scheduling\DelegateTask.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Scheduling\IScheduledTask.cs" />
+    <Compile Include="Scheduling\Schedule.cs" />
+    <Compile Include="Scheduling\ScheduledTaskBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Scheduling\Scheduler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Security\IAuthProvider.cs" />
+    <Compile Include="Security\Identity.cs" />
+    <Compile Include="Security\NodeIdentity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Security\Principal.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Serialization\Binary\BinarySerializableAttribute.cs" />
+    <Compile Include="Serialization\Binary\BinarySerializerBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Binary\ComplexSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Binary\IBinarySerializerBuilder.cs" />
+    <Compile Include="Serialization\Binary\PrimitiveSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Binary\ServiceOperationSerializer.cs" />
+    <Compile Include="Serialization\Binary\StringSerializer.cs" />
+    <Compile Include="Serialization\CSV\MessageSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\CSV\ServiceOperationSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\BytesSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\EnumSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\GenericExceptionSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\HtmlIgnoreAttribute.cs" />
+    <Compile Include="Serialization\Html\HttpFormSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\MessageSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\PrimitiveSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\ReflectionSerializer.cs" />
+    <Compile Include="Serialization\Html\ServiceOperationSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\ServiceParameterCollectionSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Html\StringSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\Json\EnumSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\GenericExceptionSerializer.cs" />
+    <Compile Include="Serialization\Json\google\MessageSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\google\ServiceOperationSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\HttpFormSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\IJsonSerializer.cs" />
+    <Compile Include="Serialization\Json\JsonParser.cs" />
+    <Compile Include="Serialization\Json\JsonSerializer.cs" />
+    <Compile Include="Serialization\Json\MessageSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\PrimitiveSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\ServiceOperationSerializer.cs" />
+    <Compile Include="Serialization\Json\ServiceParameterCollectionSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\ServiceParameterSerializer.cs" />
+    <Compile Include="Serialization\SerializableAttribute.cs" />
+    <Compile Include="Serialization\SerializationContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\SerializationException.cs" />
+    <Compile Include="Serialization\SerializationHelper.cs" />
+    <Compile Include="Serialization\SerializerBase.cs" />
+    <Compile Include="Serialization\StandardFormats.cs" />
+    <Compile Include="Serialization\Text\PrimitiveSerializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\Xml\DeclaredAppSerializer.cs" />
+    <Compile Include="Streams\SmartStream.cs" />
+    <Compile Include="Streams\StreamHelper.cs" />
+    <Compile Include="Streams\TextStream.cs" />
+    <Compile Include="Strings\StringEx.cs" />
+    <Compile Include="Threading\CounterEvent.cs" />
+    <Compile Include="Threading\ProcessorAffinity.cs" />
+    <Compile Include="Threading\SharedLock.cs" />
+    <Compile Include="Threading\SpinWaitEvent.cs" />
+    <Compile Include="Threading\SpinWaitLock.cs" />
+    <Compile Include="Threading\ThreadPool.cs" />
+    <Compile Include="Threading\TwoPhaseWait.cs" />
+    <Compile Include="Topology\NodeAddress.cs" />
+    <Compile Include="ValueTypesEx.cs" />
+    <None Include="packages.config" />
+    <None Include="Processing\Msp\HttpFile.error.msp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Data\SQLite\Scripts\Meta.db3" />
+    <None Include="Licensing\License.lic" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\SQLite\Scripts\CreateDb.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\CreateSchema.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\OpenDb.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\SeedDb.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\OpenDb - Copy.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\SeedDbDev.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\GetViews.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\GetView.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\GetViewTypes.txt" />
+    <EmbeddedResource Include="Data\SQLite\Scripts\LoadWPFViewTemplate.txt" />
+    <Content Include="Messaging\HTTPListener.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

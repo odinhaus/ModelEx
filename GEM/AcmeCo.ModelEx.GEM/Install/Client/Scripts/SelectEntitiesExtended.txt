@@ -1,0 +1,4 @@
+﻿SELECT DISTINCT E.Name, E.ParentId, E.Extension, E.Type, EX.*
+FROM Entity E
+JOIN @Extension EX on Ex.Id = E.Id
+WHERE E.Id in (@Ids);

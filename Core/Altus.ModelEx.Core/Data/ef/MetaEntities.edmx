@@ -1,0 +1,1791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MetaModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MetaModelStoreContainer">
+          <EntitySet Name="Calculator" EntityType="MetaModel.Store.Calculator" store:Type="Tables" />
+          <EntitySet Name="ContentTypes" EntityType="MetaModel.Store.ContentTypes" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="MetaModel.Store.Event" store:Type="Tables" />
+          <EntitySet Name="EventType" EntityType="MetaModel.Store.EventType" store:Type="Tables" />
+          <EntitySet Name="Field" EntityType="MetaModel.Store.Field" store:Type="Tables" />
+          <EntitySet Name="FieldField" EntityType="MetaModel.Store.FieldField" store:Type="Tables" />
+          <EntitySet Name="FieldRelationshipType" EntityType="MetaModel.Store.FieldRelationshipType" store:Type="Tables" />
+          <EntitySet Name="FieldValueType" EntityType="MetaModel.Store.FieldValueType" store:Type="Tables" />
+          <EntitySet Name="FunctionEx" EntityType="MetaModel.Store.FunctionEx" store:Type="Tables" />
+          <EntitySet Name="FunctionExInstance" EntityType="MetaModel.Store.FunctionExInstance" store:Type="Tables" />
+          <EntitySet Name="HistoryField" EntityType="MetaModel.Store.HistoryField" store:Type="Tables" />
+          <EntitySet Name="HistoryNode" EntityType="MetaModel.Store.HistoryNode" store:Type="Tables" store:Name="HistoryNode">
+            <DefiningQuery>SELECT 
+      [HistoryNode].[NodeId] AS [NodeId], 
+      [HistoryNode].[Guid] AS [Guid]
+      FROM [HistoryNode] AS [HistoryNode]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Identity" EntityType="MetaModel.Store.Identity" store:Type="Tables" />
+          <EntitySet Name="IdentityRole" EntityType="MetaModel.Store.IdentityRole" store:Type="Tables" />
+          <EntitySet Name="Network" EntityType="MetaModel.Store.Network" store:Type="Tables" />
+          <EntitySet Name="NetworkBridge" EntityType="MetaModel.Store.NetworkBridge" store:Type="Tables" />
+          <EntitySet Name="NetworkTopology" EntityType="MetaModel.Store.NetworkTopology" store:Type="Tables" />
+          <EntitySet Name="NetworkTopologyType" EntityType="MetaModel.Store.NetworkTopologyType" store:Type="Tables" />
+          <EntitySet Name="NetworkType" EntityType="MetaModel.Store.NetworkType" store:Type="Tables" />
+          <EntitySet Name="Node" EntityType="MetaModel.Store.Node" store:Type="Tables" />
+          <EntitySet Name="NodeEndPoint" EntityType="MetaModel.Store.NodeEndPoint" store:Type="Tables" />
+          <EntitySet Name="Object" EntityType="MetaModel.Store.Object" store:Type="Tables" />
+          <EntitySet Name="ObjectHistory" EntityType="MetaModel.Store.ObjectHistory" store:Type="Tables" />
+          <EntitySet Name="ObjectSpace" EntityType="MetaModel.Store.ObjectSpace" store:Type="Tables" />
+          <EntitySet Name="ObjectSpaceObject" EntityType="MetaModel.Store.ObjectSpaceObject" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="MetaModel.Store.Organization" store:Type="Tables" />
+          <EntitySet Name="OrganizationIdentity" EntityType="MetaModel.Store.OrganizationIdentity" store:Type="Tables" />
+          <EntitySet Name="Platform" EntityType="MetaModel.Store.Platform" store:Type="Tables" />
+          <EntitySet Name="PlatformContentTypes" EntityType="MetaModel.Store.PlatformContentTypes" store:Type="Tables" />
+          <EntitySet Name="PlatformOrganization" EntityType="MetaModel.Store.PlatformOrganization" store:Type="Tables" />
+          <EntitySet Name="PlatformRole" EntityType="MetaModel.Store.PlatformRole" store:Type="Tables" />
+          <EntitySet Name="PropertyEx" EntityType="MetaModel.Store.PropertyEx" store:Type="Tables" />
+          <EntitySet Name="PropertyExEvaluated" EntityType="MetaModel.Store.PropertyExEvaluated" store:Type="Tables" />
+          <EntitySet Name="PropertyExNumeric" EntityType="MetaModel.Store.PropertyExNumeric" store:Type="Tables" />
+          <EntitySet Name="PropertyExText" EntityType="MetaModel.Store.PropertyExText" store:Type="Tables" />
+          <EntitySet Name="PropertyExTime" EntityType="MetaModel.Store.PropertyExTime" store:Type="Tables" />
+          <EntitySet Name="Protocol" EntityType="MetaModel.Store.Protocol" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="MetaModel.Store.Role" store:Type="Tables" />
+          <EntitySet Name="SQLITEADMIN_QUERIES" EntityType="MetaModel.Store.SQLITEADMIN_QUERIES" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="MetaModel.Store.Topic" store:Type="Tables" />
+          <EntitySet Name="TopicField" EntityType="MetaModel.Store.TopicField" store:Type="Tables" />
+          <EntitySet Name="UINode" EntityType="MetaModel.Store.UINode" store:Type="Tables" />
+          <EntitySet Name="UINodeType" EntityType="MetaModel.Store.UINodeType" store:Type="Tables" />
+          <EntitySet Name="View" EntityType="MetaModel.Store.View" store:Type="Tables" />
+          <EntitySet Name="ViewTopic" EntityType="MetaModel.Store.ViewTopic" store:Type="Tables" />
+          <EntitySet Name="ViewType" EntityType="MetaModel.Store.ViewType" store:Type="Tables" />
+          <EntitySet Name="Window" EntityType="MetaModel.Store.Window" store:Type="Tables" />
+          <EntitySet Name="WindowView" EntityType="MetaModel.Store.WindowView" store:Type="Tables" />
+          <EntitySet Name="WPFNode" EntityType="MetaModel.Store.WPFNode" store:Type="Tables" />
+          <EntitySet Name="WPFTemplate" EntityType="MetaModel.Store.WPFTemplate" store:Type="Tables" />
+          <EntitySet Name="WPFTemplateView" EntityType="MetaModel.Store.WPFTemplateView" store:Type="Tables" />
+          <EntitySet Name="WPFWindow" EntityType="MetaModel.Store.WPFWindow" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Calculator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="integer" Nullable="false" />
+          <Property Name="TargetObjectId" Type="integer" Nullable="false" />
+          <Property Name="TargetFieldId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="Condition" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Formula" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="ContentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContentType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Extension" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FieldId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="EventTypeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Field">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="DataType" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="FieldValueTypeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="FieldField">
+          <Key>
+            <PropertyRef Name="SourceFieldId" />
+            <PropertyRef Name="SourceObjectId" />
+            <PropertyRef Name="TargetFieldId" />
+            <PropertyRef Name="TargetObjectId" />
+            <PropertyRef Name="FieldRelationshipTypeId" />
+          </Key>
+          <Property Name="SourceFieldId" Type="integer" Nullable="false" />
+          <Property Name="SourceObjectId" Type="integer" Nullable="false" />
+          <Property Name="TargetFieldId" Type="integer" Nullable="false" />
+          <Property Name="TargetObjectId" Type="integer" Nullable="false" />
+          <Property Name="FieldRelationshipTypeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="FieldRelationshipType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="FieldValueType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="FunctionEx">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="BodyCS" Type="nvarchar" Nullable="false" />
+          <Property Name="References" Type="nvarchar" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="FunctionExInstance">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="FunctionExId" />
+          </Key>
+          <Property Name="InstanceType" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="InstanceId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="FunctionExId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="HistoryField">
+          <Key>
+            <PropertyRef Name="FieldId" />
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="FieldId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="CompressionTolerance" Type="nvarchar" MaxLength="128" />
+          <Property Name="CompressionType" Type="nvarchar" MaxLength="128" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.HistoryNode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="HistoryNode">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Identity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="PasswordEncrypted" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="SecretKey" Type="nvarchar" Nullable="false" MaxLength="36" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="IdentityRole">
+          <Key>
+            <PropertyRef Name="IdentityId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="IdentityId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Network">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="TypeId" Type="integer" Nullable="false" />
+          <Property Name="OrganizationId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="NetworkBridge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LocalNodeId" Type="integer" Nullable="false" />
+          <Property Name="RemoteNodeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="NetworkTopology">
+          <Key>
+            <PropertyRef Name="NetworkSourceId" />
+            <PropertyRef Name="NetworkDestinationId" />
+            <PropertyRef Name="P2PTypeId" />
+          </Key>
+          <Property Name="NetworkSourceId" Type="integer" Nullable="false" />
+          <Property Name="NetworkDestinationId" Type="integer" Nullable="false" />
+          <Property Name="P2PTypeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="NetworkTopologyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="P2PType" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="NetworkType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Node">
+          <Key>
+            <PropertyRef Name="IdentityId" />
+          </Key>
+          <Property Name="IdentityId" Type="integer" Nullable="false" />
+          <Property Name="NetworkId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="NodeEndPoint">
+          <Key>
+            <PropertyRef Name="NodeId" />
+            <PropertyRef Name="ProtocolId" />
+          </Key>
+          <Property Name="NodeId" Type="integer" Nullable="false" />
+          <Property Name="ProtocolId" Type="integer" Nullable="false" />
+          <Property Name="HostNameOrIP" Type="nvarchar" MaxLength="64" />
+          <Property Name="Port" Type="integer" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" />
+          <Property Name="OrganizationId" Type="integer" />
+          <Property Name="PlatformId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="ObjectHistory">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="NodeId" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="EndDate" />
+          </Key>
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="NodeId" Type="integer" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="DefaultCompressionStrategyType" Type="nvarchar" MaxLength="128" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="ObjectSpace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="ObjectSpaceObject">
+          <Key>
+            <PropertyRef Name="ObjectSpaceId" />
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectSpaceId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="OrganizationIdentity">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="IdentityId" />
+          </Key>
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="IdentityId" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PlatformContentTypes">
+          <Key>
+            <PropertyRef Name="PlatformId" />
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="PlatformId" Type="integer" Nullable="false" />
+          <Property Name="ContentTypeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PlatformOrganization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="PlatformId" />
+          </Key>
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="PlatformId" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PlatformRole">
+          <Key>
+            <PropertyRef Name="PlatformId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="PlatformId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PropertyEx">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="References" Type="nvarchar" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PropertyExEvaluated">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="InstanceId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="PropertyExId" Type="integer" Nullable="false" />
+          <Property Name="GettorCS" Type="nvarchar" />
+          <Property Name="SettorCS" Type="nvarchar" />
+          <Property Name="BodyCS" Type="nvarchar" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PropertyExNumeric">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="InstanceId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="PropertyExId" Type="integer" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="53" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PropertyExText">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="InstanceId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="PropertyExId" Type="integer" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="PropertyExTime">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="InstanceId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="PropertyExId" Type="integer" Nullable="false" />
+          <Property Name="Value" Type="datetime" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Protocol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="16" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="SQLITEADMIN_QUERIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="SQL" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="IsDeliveryGuaranteed" Type="bit" Nullable="false" />
+          <Property Name="IsSubscriberSpecific" Type="bit" Nullable="false" />
+          <Property Name="MulticastIP" Type="nvarchar" MaxLength="32" />
+          <Property Name="MulticastPort" Type="integer" />
+          <Property Name="DefaultFormat" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="OrganizationId" Type="integer" Nullable="false" />
+          <Property Name="PlatformId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="TopicField">
+          <Key>
+            <PropertyRef Name="FieldId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="FieldId" Type="integer" Nullable="false" />
+          <Property Name="ObjectId" Type="integer" Nullable="false" />
+          <Property Name="TopicId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="UINode">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UINodeTypeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="UINodeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="View">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="IconPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="ViewTypeId" Type="integer" Nullable="false" />
+          <Property Name="CLRType" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="ViewTopic">
+          <Key>
+            <PropertyRef Name="ViewId" />
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="ViewId" Type="integer" Nullable="false" />
+          <Property Name="TopicId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="ViewType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Window">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NodeId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="WindowView">
+          <Key>
+            <PropertyRef Name="WindowId" />
+            <PropertyRef Name="ViewId" />
+          </Key>
+          <Property Name="WindowId" Type="integer" Nullable="false" />
+          <Property Name="ViewId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="WPFNode">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="WPFTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="XAML" Type="nvarchar" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="MasterTemplateId" Type="integer" />
+          <Property Name="IsMaster" Type="bit" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="WPFTemplateView">
+          <Key>
+            <PropertyRef Name="WPFTemplateId" />
+            <PropertyRef Name="ViewId" />
+          </Key>
+          <Property Name="WPFTemplateId" Type="integer" Nullable="false" />
+          <Property Name="ViewId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="WPFWindow">
+          <Key>
+            <PropertyRef Name="WindowId" />
+          </Key>
+          <Property Name="WindowId" Type="integer" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MetaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calculators" EntityType="MetaModel.Calculator" />
+          <EntitySet Name="ContentTypes" EntityType="MetaModel.ContentType" />
+          <EntitySet Name="Events" EntityType="MetaModel.Event" />
+          <EntitySet Name="EventTypes" EntityType="MetaModel.EventType" />
+          <EntitySet Name="Fields" EntityType="MetaModel.Field" />
+          <EntitySet Name="FieldFields" EntityType="MetaModel.FieldField" />
+          <EntitySet Name="FieldRelationshipTypes" EntityType="MetaModel.FieldRelationshipType" />
+          <EntitySet Name="FieldValueTypes" EntityType="MetaModel.FieldValueType" />
+          <EntitySet Name="FunctionExes" EntityType="MetaModel.FunctionEx" />
+          <EntitySet Name="FunctionExInstances" EntityType="MetaModel.FunctionExInstance" />
+          <EntitySet Name="HistoryFields" EntityType="MetaModel.HistoryField" />
+          <EntitySet Name="HistoryNodes" EntityType="MetaModel.HistoryNode" />
+          <EntitySet Name="Identities" EntityType="MetaModel.Identity" />
+          <EntitySet Name="IdentityRoles" EntityType="MetaModel.IdentityRole" />
+          <EntitySet Name="Networks" EntityType="MetaModel.Network" />
+          <EntitySet Name="NetworkBridges" EntityType="MetaModel.NetworkBridge" />
+          <EntitySet Name="NetworkTopologies" EntityType="MetaModel.NetworkTopology" />
+          <EntitySet Name="NetworkTopologyTypes" EntityType="MetaModel.NetworkTopologyType" />
+          <EntitySet Name="NetworkTypes" EntityType="MetaModel.NetworkType" />
+          <EntitySet Name="Nodes" EntityType="MetaModel.Node" />
+          <EntitySet Name="NodeEndPoints" EntityType="MetaModel.NodeEndPoint" />
+          <EntitySet Name="Objects" EntityType="MetaModel.Object" />
+          <EntitySet Name="ObjectHistories" EntityType="MetaModel.ObjectHistory" />
+          <EntitySet Name="ObjectSpaces" EntityType="MetaModel.ObjectSpace" />
+          <EntitySet Name="ObjectSpaceObjects" EntityType="MetaModel.ObjectSpaceObject" />
+          <EntitySet Name="Organizations" EntityType="MetaModel.Organization" />
+          <EntitySet Name="OrganizationIdentities" EntityType="MetaModel.OrganizationIdentity" />
+          <EntitySet Name="Platforms" EntityType="MetaModel.Platform" />
+          <EntitySet Name="PlatformContentTypes" EntityType="MetaModel.PlatformContentType" />
+          <EntitySet Name="PlatformOrganizations" EntityType="MetaModel.PlatformOrganization" />
+          <EntitySet Name="PlatformRoles" EntityType="MetaModel.PlatformRole" />
+          <EntitySet Name="PropertyExes" EntityType="MetaModel.PropertyEx" />
+          <EntitySet Name="PropertyExEvaluateds" EntityType="MetaModel.PropertyExEvaluated" />
+          <EntitySet Name="PropertyExNumerics" EntityType="MetaModel.PropertyExNumeric" />
+          <EntitySet Name="PropertyExTexts" EntityType="MetaModel.PropertyExText" />
+          <EntitySet Name="PropertyExTimes" EntityType="MetaModel.PropertyExTime" />
+          <EntitySet Name="Protocols" EntityType="MetaModel.Protocol" />
+          <EntitySet Name="Roles" EntityType="MetaModel.Role" />
+          <EntitySet Name="SQLITEADMIN_QUERIES" EntityType="MetaModel.SQLITEADMIN_QUERIES" />
+          <EntitySet Name="Topics" EntityType="MetaModel.Topic" />
+          <EntitySet Name="TopicFields" EntityType="MetaModel.TopicField" />
+          <EntitySet Name="UINodes" EntityType="MetaModel.UINode" />
+          <EntitySet Name="UINodeTypes" EntityType="MetaModel.UINodeType" />
+          <EntitySet Name="Views" EntityType="MetaModel.View" />
+          <EntitySet Name="ViewTopics" EntityType="MetaModel.ViewTopic" />
+          <EntitySet Name="ViewTypes" EntityType="MetaModel.ViewType" />
+          <EntitySet Name="Windows" EntityType="MetaModel.Window" />
+          <EntitySet Name="WindowViews" EntityType="MetaModel.WindowView" />
+          <EntitySet Name="WPFNodes" EntityType="MetaModel.WPFNode" />
+          <EntitySet Name="WPFTemplates" EntityType="MetaModel.WPFTemplate" />
+          <EntitySet Name="WPFTemplateViews" EntityType="MetaModel.WPFTemplateView" />
+          <EntitySet Name="WPFWindows" EntityType="MetaModel.WPFWindow" />
+        </EntityContainer>
+        <EntityType Name="Calculator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="TargetObjectId" Type="Int64" Nullable="false" />
+          <Property Name="TargetFieldId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Condition" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Formula" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentType1" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Extension" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="EventTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Field">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="DataType" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="FieldValueTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FieldField">
+          <Key>
+            <PropertyRef Name="SourceFieldId" />
+            <PropertyRef Name="SourceObjectId" />
+            <PropertyRef Name="TargetFieldId" />
+            <PropertyRef Name="TargetObjectId" />
+            <PropertyRef Name="FieldRelationshipTypeId" />
+          </Key>
+          <Property Name="SourceFieldId" Type="Int64" Nullable="false" />
+          <Property Name="SourceObjectId" Type="Int64" Nullable="false" />
+          <Property Name="TargetFieldId" Type="Int64" Nullable="false" />
+          <Property Name="TargetObjectId" Type="Int64" Nullable="false" />
+          <Property Name="FieldRelationshipTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FieldRelationshipType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FieldValueType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FunctionEx">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="BodyCS" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="References" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FunctionExInstance">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="FunctionExId" />
+          </Key>
+          <Property Name="InstanceType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="InstanceId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="FunctionExId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="HistoryField">
+          <Key>
+            <PropertyRef Name="FieldId" />
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="FieldId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="CompressionTolerance" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="CompressionType" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="HistoryNode">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Identity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordEncrypted" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="SecretKey" Type="String" Nullable="false" MaxLength="36" Unicode="true" FixedLength="false" />
+          <Property Name="Created" Type="DateTime" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="IdentityRole">
+          <Key>
+            <PropertyRef Name="IdentityId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="IdentityId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Network">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="TypeId" Type="Int64" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NetworkBridge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocalNodeId" Type="Int64" Nullable="false" />
+          <Property Name="RemoteNodeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NetworkTopology">
+          <Key>
+            <PropertyRef Name="NetworkSourceId" />
+            <PropertyRef Name="NetworkDestinationId" />
+            <PropertyRef Name="P2PTypeId" />
+          </Key>
+          <Property Name="NetworkSourceId" Type="Int64" Nullable="false" />
+          <Property Name="NetworkDestinationId" Type="Int64" Nullable="false" />
+          <Property Name="P2PTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NetworkTopologyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P2PType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NetworkType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Node">
+          <Key>
+            <PropertyRef Name="IdentityId" />
+          </Key>
+          <Property Name="IdentityId" Type="Int64" Nullable="false" />
+          <Property Name="NetworkId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NodeEndPoint">
+          <Key>
+            <PropertyRef Name="NodeId" />
+            <PropertyRef Name="ProtocolId" />
+          </Key>
+          <Property Name="NodeId" Type="Int64" Nullable="false" />
+          <Property Name="ProtocolId" Type="Int64" Nullable="false" />
+          <Property Name="HostNameOrIP" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Port" Type="Int64" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="OrganizationId" Type="Int64" />
+          <Property Name="PlatformId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObjectHistory">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="NodeId" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="EndDate" />
+          </Key>
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="NodeId" Type="Int64" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="DefaultCompressionStrategyType" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObjectSpace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObjectSpaceObject">
+          <Key>
+            <PropertyRef Name="ObjectSpaceId" />
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectSpaceId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OrganizationIdentity">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="IdentityId" />
+          </Key>
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="IdentityId" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PlatformContentType">
+          <Key>
+            <PropertyRef Name="PlatformId" />
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="PlatformId" Type="Int64" Nullable="false" />
+          <Property Name="ContentTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PlatformOrganization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="PlatformId" />
+          </Key>
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="PlatformId" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PlatformRole">
+          <Key>
+            <PropertyRef Name="PlatformId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="PlatformId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PropertyEx">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="References" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PropertyExEvaluated">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="InstanceId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="PropertyExId" Type="Int64" Nullable="false" />
+          <Property Name="GettorCS" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="SettorCS" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="BodyCS" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PropertyExNumeric">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="InstanceId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="PropertyExId" Type="Int64" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PropertyExText">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="InstanceId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="PropertyExId" Type="Int64" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PropertyExTime">
+          <Key>
+            <PropertyRef Name="InstanceType" />
+            <PropertyRef Name="InstanceId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="PropertyExId" />
+          </Key>
+          <Property Name="InstanceType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="InstanceId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="PropertyExId" Type="Int64" Nullable="false" />
+          <Property Name="Value" Type="DateTime" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Protocol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SQLITEADMIN_QUERIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="SQL" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="IsDeliveryGuaranteed" Type="Boolean" Nullable="false" />
+          <Property Name="IsSubscriberSpecific" Type="Boolean" Nullable="false" />
+          <Property Name="MulticastIP" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="MulticastPort" Type="Int64" />
+          <Property Name="DefaultFormat" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="OrganizationId" Type="Int64" Nullable="false" />
+          <Property Name="PlatformId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TopicField">
+          <Key>
+            <PropertyRef Name="FieldId" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="FieldId" Type="Int64" Nullable="false" />
+          <Property Name="ObjectId" Type="Int64" Nullable="false" />
+          <Property Name="TopicId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UINode">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UINodeTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UINodeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="View">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="IconPath" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ViewTypeId" Type="Int64" Nullable="false" />
+          <Property Name="CLRType" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ViewTopic">
+          <Key>
+            <PropertyRef Name="ViewId" />
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="ViewId" Type="Int64" Nullable="false" />
+          <Property Name="TopicId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ViewType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Window">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NodeId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WindowView">
+          <Key>
+            <PropertyRef Name="WindowId" />
+            <PropertyRef Name="ViewId" />
+          </Key>
+          <Property Name="WindowId" Type="Int64" Nullable="false" />
+          <Property Name="ViewId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WPFNode">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WPFTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="XAML" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Size" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="MasterTemplateId" Type="Int64" />
+          <Property Name="IsMaster" Type="Boolean" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WPFTemplateView">
+          <Key>
+            <PropertyRef Name="WPFTemplateId" />
+            <PropertyRef Name="ViewId" />
+          </Key>
+          <Property Name="WPFTemplateId" Type="Int64" Nullable="false" />
+          <Property Name="ViewId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WPFWindow">
+          <Key>
+            <PropertyRef Name="WindowId" />
+          </Key>
+          <Property Name="WindowId" Type="Int64" Nullable="false" />
+          <Property Name="Guid" Type="String" MaxLength="36" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MetaModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Calculators">
+            <EntityTypeMapping TypeName="MetaModel.Calculator">
+              <MappingFragment StoreEntitySet="Calculator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="TargetObjectId" ColumnName="TargetObjectId" />
+                <ScalarProperty Name="TargetFieldId" ColumnName="TargetFieldId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Formula" ColumnName="Formula" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentTypes">
+            <EntityTypeMapping TypeName="MetaModel.ContentType">
+              <MappingFragment StoreEntitySet="ContentTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContentType1" ColumnName="ContentType" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="MetaModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="MetaModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fields">
+            <EntityTypeMapping TypeName="MetaModel.Field">
+              <MappingFragment StoreEntitySet="Field">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="FieldValueTypeId" ColumnName="FieldValueTypeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldFields">
+            <EntityTypeMapping TypeName="MetaModel.FieldField">
+              <MappingFragment StoreEntitySet="FieldField">
+                <ScalarProperty Name="SourceFieldId" ColumnName="SourceFieldId" />
+                <ScalarProperty Name="SourceObjectId" ColumnName="SourceObjectId" />
+                <ScalarProperty Name="TargetFieldId" ColumnName="TargetFieldId" />
+                <ScalarProperty Name="TargetObjectId" ColumnName="TargetObjectId" />
+                <ScalarProperty Name="FieldRelationshipTypeId" ColumnName="FieldRelationshipTypeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldRelationshipTypes">
+            <EntityTypeMapping TypeName="MetaModel.FieldRelationshipType">
+              <MappingFragment StoreEntitySet="FieldRelationshipType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldValueTypes">
+            <EntityTypeMapping TypeName="MetaModel.FieldValueType">
+              <MappingFragment StoreEntitySet="FieldValueType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FunctionExes">
+            <EntityTypeMapping TypeName="MetaModel.FunctionEx">
+              <MappingFragment StoreEntitySet="FunctionEx">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BodyCS" ColumnName="BodyCS" />
+                <ScalarProperty Name="References" ColumnName="References" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FunctionExInstances">
+            <EntityTypeMapping TypeName="MetaModel.FunctionExInstance">
+              <MappingFragment StoreEntitySet="FunctionExInstance">
+                <ScalarProperty Name="InstanceType" ColumnName="InstanceType" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="FunctionExId" ColumnName="FunctionExId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryFields">
+            <EntityTypeMapping TypeName="MetaModel.HistoryField">
+              <MappingFragment StoreEntitySet="HistoryField">
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="CompressionTolerance" ColumnName="CompressionTolerance" />
+                <ScalarProperty Name="CompressionType" ColumnName="CompressionType" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryNodes">
+            <EntityTypeMapping TypeName="MetaModel.HistoryNode">
+              <MappingFragment StoreEntitySet="HistoryNode">
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Identities">
+            <EntityTypeMapping TypeName="MetaModel.Identity">
+              <MappingFragment StoreEntitySet="Identity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PasswordEncrypted" ColumnName="PasswordEncrypted" />
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityRoles">
+            <EntityTypeMapping TypeName="MetaModel.IdentityRole">
+              <MappingFragment StoreEntitySet="IdentityRole">
+                <ScalarProperty Name="IdentityId" ColumnName="IdentityId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Networks">
+            <EntityTypeMapping TypeName="MetaModel.Network">
+              <MappingFragment StoreEntitySet="Network">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetworkBridges">
+            <EntityTypeMapping TypeName="MetaModel.NetworkBridge">
+              <MappingFragment StoreEntitySet="NetworkBridge">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LocalNodeId" ColumnName="LocalNodeId" />
+                <ScalarProperty Name="RemoteNodeId" ColumnName="RemoteNodeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetworkTopologies">
+            <EntityTypeMapping TypeName="MetaModel.NetworkTopology">
+              <MappingFragment StoreEntitySet="NetworkTopology">
+                <ScalarProperty Name="NetworkSourceId" ColumnName="NetworkSourceId" />
+                <ScalarProperty Name="NetworkDestinationId" ColumnName="NetworkDestinationId" />
+                <ScalarProperty Name="P2PTypeId" ColumnName="P2PTypeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetworkTopologyTypes">
+            <EntityTypeMapping TypeName="MetaModel.NetworkTopologyType">
+              <MappingFragment StoreEntitySet="NetworkTopologyType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="P2PType" ColumnName="P2PType" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetworkTypes">
+            <EntityTypeMapping TypeName="MetaModel.NetworkType">
+              <MappingFragment StoreEntitySet="NetworkType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nodes">
+            <EntityTypeMapping TypeName="MetaModel.Node">
+              <MappingFragment StoreEntitySet="Node">
+                <ScalarProperty Name="IdentityId" ColumnName="IdentityId" />
+                <ScalarProperty Name="NetworkId" ColumnName="NetworkId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NodeEndPoints">
+            <EntityTypeMapping TypeName="MetaModel.NodeEndPoint">
+              <MappingFragment StoreEntitySet="NodeEndPoint">
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="ProtocolId" ColumnName="ProtocolId" />
+                <ScalarProperty Name="HostNameOrIP" ColumnName="HostNameOrIP" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Objects">
+            <EntityTypeMapping TypeName="MetaModel.Object">
+              <MappingFragment StoreEntitySet="Object">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObjectHistories">
+            <EntityTypeMapping TypeName="MetaModel.ObjectHistory">
+              <MappingFragment StoreEntitySet="ObjectHistory">
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DefaultCompressionStrategyType" ColumnName="DefaultCompressionStrategyType" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObjectSpaces">
+            <EntityTypeMapping TypeName="MetaModel.ObjectSpace">
+              <MappingFragment StoreEntitySet="ObjectSpace">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObjectSpaceObjects">
+            <EntityTypeMapping TypeName="MetaModel.ObjectSpaceObject">
+              <MappingFragment StoreEntitySet="ObjectSpaceObject">
+                <ScalarProperty Name="ObjectSpaceId" ColumnName="ObjectSpaceId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="MetaModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationIdentities">
+            <EntityTypeMapping TypeName="MetaModel.OrganizationIdentity">
+              <MappingFragment StoreEntitySet="OrganizationIdentity">
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="IdentityId" ColumnName="IdentityId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platforms">
+            <EntityTypeMapping TypeName="MetaModel.Platform">
+              <MappingFragment StoreEntitySet="Platform">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatformContentTypes">
+            <EntityTypeMapping TypeName="MetaModel.PlatformContentType">
+              <MappingFragment StoreEntitySet="PlatformContentTypes">
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatformOrganizations">
+            <EntityTypeMapping TypeName="MetaModel.PlatformOrganization">
+              <MappingFragment StoreEntitySet="PlatformOrganization">
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatformRoles">
+            <EntityTypeMapping TypeName="MetaModel.PlatformRole">
+              <MappingFragment StoreEntitySet="PlatformRole">
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyExes">
+            <EntityTypeMapping TypeName="MetaModel.PropertyEx">
+              <MappingFragment StoreEntitySet="PropertyEx">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="References" ColumnName="References" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyExEvaluateds">
+            <EntityTypeMapping TypeName="MetaModel.PropertyExEvaluated">
+              <MappingFragment StoreEntitySet="PropertyExEvaluated">
+                <ScalarProperty Name="InstanceType" ColumnName="InstanceType" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="PropertyExId" ColumnName="PropertyExId" />
+                <ScalarProperty Name="GettorCS" ColumnName="GettorCS" />
+                <ScalarProperty Name="SettorCS" ColumnName="SettorCS" />
+                <ScalarProperty Name="BodyCS" ColumnName="BodyCS" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyExNumerics">
+            <EntityTypeMapping TypeName="MetaModel.PropertyExNumeric">
+              <MappingFragment StoreEntitySet="PropertyExNumeric">
+                <ScalarProperty Name="InstanceType" ColumnName="InstanceType" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="PropertyExId" ColumnName="PropertyExId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyExTexts">
+            <EntityTypeMapping TypeName="MetaModel.PropertyExText">
+              <MappingFragment StoreEntitySet="PropertyExText">
+                <ScalarProperty Name="InstanceType" ColumnName="InstanceType" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="PropertyExId" ColumnName="PropertyExId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyExTimes">
+            <EntityTypeMapping TypeName="MetaModel.PropertyExTime">
+              <MappingFragment StoreEntitySet="PropertyExTime">
+                <ScalarProperty Name="InstanceType" ColumnName="InstanceType" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="PropertyExId" ColumnName="PropertyExId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Protocols">
+            <EntityTypeMapping TypeName="MetaModel.Protocol">
+              <MappingFragment StoreEntitySet="Protocol">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="MetaModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SQLITEADMIN_QUERIES">
+            <EntityTypeMapping TypeName="MetaModel.SQLITEADMIN_QUERIES">
+              <MappingFragment StoreEntitySet="SQLITEADMIN_QUERIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SQL" ColumnName="SQL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="MetaModel.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeliveryGuaranteed" ColumnName="IsDeliveryGuaranteed" />
+                <ScalarProperty Name="IsSubscriberSpecific" ColumnName="IsSubscriberSpecific" />
+                <ScalarProperty Name="MulticastIP" ColumnName="MulticastIP" />
+                <ScalarProperty Name="MulticastPort" ColumnName="MulticastPort" />
+                <ScalarProperty Name="DefaultFormat" ColumnName="DefaultFormat" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicFields">
+            <EntityTypeMapping TypeName="MetaModel.TopicField">
+              <MappingFragment StoreEntitySet="TopicField">
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UINodes">
+            <EntityTypeMapping TypeName="MetaModel.UINode">
+              <MappingFragment StoreEntitySet="UINode">
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="UINodeTypeId" ColumnName="UINodeTypeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UINodeTypes">
+            <EntityTypeMapping TypeName="MetaModel.UINodeType">
+              <MappingFragment StoreEntitySet="UINodeType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Views">
+            <EntityTypeMapping TypeName="MetaModel.View">
+              <MappingFragment StoreEntitySet="View">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+                <ScalarProperty Name="ViewTypeId" ColumnName="ViewTypeId" />
+                <ScalarProperty Name="CLRType" ColumnName="CLRType" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewTopics">
+            <EntityTypeMapping TypeName="MetaModel.ViewTopic">
+              <MappingFragment StoreEntitySet="ViewTopic">
+                <ScalarProperty Name="ViewId" ColumnName="ViewId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewTypes">
+            <EntityTypeMapping TypeName="MetaModel.ViewType">
+              <MappingFragment StoreEntitySet="ViewType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Windows">
+            <EntityTypeMapping TypeName="MetaModel.Window">
+              <MappingFragment StoreEntitySet="Window">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WindowViews">
+            <EntityTypeMapping TypeName="MetaModel.WindowView">
+              <MappingFragment StoreEntitySet="WindowView">
+                <ScalarProperty Name="WindowId" ColumnName="WindowId" />
+                <ScalarProperty Name="ViewId" ColumnName="ViewId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WPFNodes">
+            <EntityTypeMapping TypeName="MetaModel.WPFNode">
+              <MappingFragment StoreEntitySet="WPFNode">
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WPFTemplates">
+            <EntityTypeMapping TypeName="MetaModel.WPFTemplate">
+              <MappingFragment StoreEntitySet="WPFTemplate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="XAML" ColumnName="XAML" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="MasterTemplateId" ColumnName="MasterTemplateId" />
+                <ScalarProperty Name="IsMaster" ColumnName="IsMaster" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WPFTemplateViews">
+            <EntityTypeMapping TypeName="MetaModel.WPFTemplateView">
+              <MappingFragment StoreEntitySet="WPFTemplateView">
+                <ScalarProperty Name="WPFTemplateId" ColumnName="WPFTemplateId" />
+                <ScalarProperty Name="ViewId" ColumnName="ViewId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WPFWindows">
+            <EntityTypeMapping TypeName="MetaModel.WPFWindow">
+              <MappingFragment StoreEntitySet="WPFWindow">
+                <ScalarProperty Name="WindowId" ColumnName="WindowId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MetaEntities">
+        <EntityTypeShape EntityType="MetaModel.Calculator" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.ContentType" Width="1.5" PointX="2.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Event" Width="1.5" PointX="2.75" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.EventType" Width="1.5" PointX="4.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Field" Width="1.5" PointX="4.75" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.FieldField" Width="1.5" PointX="6.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.FieldRelationshipType" Width="1.5" PointX="0.75" PointY="6.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.FieldValueType" Width="1.5" PointX="2.75" PointY="6.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.FunctionEx" Width="1.5" PointX="6.75" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.FunctionExInstance" Width="1.5" PointX="4.75" PointY="6.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.HistoryField" Width="1.5" PointX="6.75" PointY="6.75" Height="1.9802864583333353" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.HistoryNode" Width="1.5" PointX="8.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Identity" Width="1.5" PointX="8.75" PointY="3.75" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.IdentityRole" Width="1.5" PointX="8.75" PointY="6.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Network" Width="1.5" PointX="0.75" PointY="9.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.NetworkBridge" Width="1.5" PointX="2.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.NetworkTopology" Width="1.5" PointX="4.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.NetworkTopologyType" Width="1.5" PointX="6.75" PointY="9.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.NetworkType" Width="1.5" PointX="8.75" PointY="9.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Node" Width="1.5" PointX="10.75" PointY="0.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.NodeEndPoint" Width="1.5" PointX="10.75" PointY="3.75" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Object" Width="1.5" PointX="10.75" PointY="6.75" Height="1.9802864583333282" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.ObjectHistory" Width="1.5" PointX="10.75" PointY="9.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.ObjectSpace" Width="1.5" PointX="12.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.ObjectSpaceObject" Width="1.5" PointX="0.75" PointY="12.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Organization" Width="1.5" PointX="2.75" PointY="12.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.OrganizationIdentity" Width="1.5" PointX="12.75" PointY="3.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Platform" Width="1.5" PointX="4.75" PointY="12.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PlatformContentType" Width="1.5" PointX="12.75" PointY="6.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PlatformOrganization" Width="1.5" PointX="6.75" PointY="12.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PlatformRole" Width="1.5" PointX="8.75" PointY="12.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PropertyEx" Width="1.5" PointX="12.75" PointY="9.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PropertyExEvaluated" Width="1.5" PointX="10.75" PointY="12.75" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PropertyExNumeric" Width="1.5" PointX="12.75" PointY="12.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PropertyExText" Width="1.5" PointX="14.75" PointY="0.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.PropertyExTime" Width="1.5" PointX="14.75" PointY="3.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Protocol" Width="1.5" PointX="14.75" PointY="6.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Role" Width="1.5" PointX="14.75" PointY="9.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.SQLITEADMIN_QUERIES" Width="1.5" PointX="14.75" PointY="12.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Topic" Width="1.5" PointX="0.75" PointY="15.75" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.TopicField" Width="1.5" PointX="2.75" PointY="15.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.UINode" Width="1.5" PointX="4.75" PointY="15.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.UINodeType" Width="1.5" PointX="6.75" PointY="15.75" Height="1.595683593749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.View" Width="1.5" PointX="12.75" PointY="15.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.ViewTopic" Width="1.5" PointX="14.75" PointY="15.75" Height="1.5956835937499818" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.ViewType" Width="1.5" PointX="16.75" PointY="0.75" Height="1.5956835937499818" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.Window" Width="1.5" PointX="16.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.WindowView" Width="1.5" PointX="16.75" PointY="6.75" Height="1.5956835937499818" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.WPFNode" Width="1.5" PointX="8.75" PointY="16.75" Height="1.4033821614583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.WPFTemplate" Width="1.5" PointX="16.75" PointY="9.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.WPFTemplateView" Width="1.5" PointX="16.75" PointY="13.75" Height="1.5956835937499818" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetaModel.WPFWindow" Width="1.5" PointX="16.75" PointY="16.75" Height="1.4033821614583246" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

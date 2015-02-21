@@ -1,0 +1,2 @@
+﻿INSERT INTO AppType(Name) Values('wpf');$
+INSERT INTO Window(Name, AppTypeId) Values('Main', 1);$

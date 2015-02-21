@@ -1,0 +1,9 @@
+﻿SELECT V.*, VT.Name as [ViewType]
+FROM View V
+JOIN WindowView WV on WV.ViewId = V.Id
+JOIN Window W on W.Id = WV.WindowId
+JOIN ViewType VT on VT.Id = V.ViewTypeId
+JOIN AppType AT on AT.Id = W.AppTypeId
+WHERE  W.Name LIKE @WindowName
+and VT.Name LIKE @ViewType
+and AT.Name = @AppType;
